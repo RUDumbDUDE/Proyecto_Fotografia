@@ -1,149 +1,197 @@
 /* =========================================
-   1. VARIABLES (Nuestra paleta premium)
+   1. VARIABLES DE MARCA MAPACHE STUDIO
 ========================================= */
 :root {
-    --color-fondo: #121212; /* Un negro suave, no absoluto */
-    --color-texto: #f5f5f7; /* Blanco roto para no cansar la vista */
-    --color-acento: #d4af37; /* Un dorado sutil para detalles elegantes */
-    --fuente-principal: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /* Paleta Extraída del Logo */
+    --color-fondo-naranja: #f67211; /* El naranja vibrante */
+    --color-fondo-claro: #ffffff;
+    --color-texto-base: #333333; /* Gris carbón para lectura */
+    --color-texto-titulo: #1d1d1f; /* Negro sofisticado */
+    --color-acento: #f67211; /* Naranja para CTA y títulos */
+    --color-mapache-oscuro: #1d1d1f; /* Del antifaz/ojos */
+    --color-mapache-marron: #6c4e34; /* De los ojos, para detalles cálidos */
+
+    /* Tipografía Amigable y Profesional */
+    --fuente-titulo: 'Poppins', sans-serif; /* Geométrica amigable */
+    --fuente-base: 'Poppins', sans-serif;
+    --fuente-acento: 'Pacifico', cursive; /* Para subtítulos juguetones */
 }
 
 /* =========================================
-   2. RESETEO BASE
+   2. RESETEO BASE Y TIPOGRAFÍA
 ========================================= */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Fundamental para que los tamaños no se rompan */
+    box-sizing: border-box;
 }
 
 body {
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    font-family: var(--fuente-principal);
-    line-height: 1.6; /* Mejora la lectura */
-    -webkit-font-smoothing: antialiased; /* Hace que las letras se vean más nítidas */
+    background-color: var(--color-fondo-claro); /* Fondo blanco, limpio */
+    color: var(--color-texto-base);
+    font-family: var(--fuente-base);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Tipografía general */
 h1, h2, h3 {
-    font-weight: 300; /* Letras delgadas dan un toque más elegante */
-    letter-spacing: 2px; /* Separar un poco las letras grita "premium" */
-    text-transform: uppercase;
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: none; /* No todo en mayúsculas */
 }
 
 a {
     text-decoration: none;
-    color: var(--color-texto);
-    transition: color 0.3s ease; /* Transición suave al pasar el mouse */
+    color: var(--color-mapache-oscuro);
+    transition: color 0.3s ease, border 0.3s ease;
 }
 
 /* =========================================
    3. ENCABEZADO Y NAVEGACIÓN
 ========================================= */
 header {
-    background-color: rgba(18, 18, 18, 0.95); /* Negro ligeramente transparente */
-    padding: 20px 0;
-    position: fixed; /* Se queda fijo al hacer scroll */
+    background-color: var(--color-fondo-claro);
+    padding: 15px 40px; /* Da espacio arriba/abajo y a los lados */
+    position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000; /* Asegura que el menú siempre esté por encima de las fotos */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+nav {
+    display: flex; /* Convierte el nav en un contenedor flexible */
+    justify-content: space-between; /* Empuja el logo a la izquierda y la lista a la derecha */
+    align-items: center; /* ¡Esta es la línea clave! Centra todo verticalmente */
+    max-width: 1200px; /* Mantiene el menú alineado con el resto de la página */
+    margin: 0 auto; /* Centra el contenedor del nav en pantallas grandes */
+}
+
+.logo-header img {
+    height: 60px; /* Tamaño ideal para el logo del mapache */
+    display: block; /* Evita un espacio extra debajo de la imagen */
+    transition: transform 0.3s ease;
+}
+
+.logo-header img:hover {
+    transform: scale(1.05); /* Pequeño rebote al pasar el mouse por el logo */
 }
 
 nav ul {
-    list-style: none; /* Quita los puntos de la lista */
-    display: flex; /* Coloca los elementos uno al lado del otro */
-    justify-content: center; /* Los centra en la pantalla */
-    gap: 40px; /* Espacio entre cada botón del menú */
+    list-style: none;
+    display: flex;
+    gap: 40px; /* Separación entre los enlaces */
 }
 
 nav a {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-size: 1rem;
+    font-weight: 600; /* Letra un poco más gruesa para que destaque */
+    color: var(--color-texto-base);
+    border-bottom: 2px solid transparent;
+    padding-bottom: 5px; /* Espacio entre el texto y la línea de subrayado */
 }
 
 nav a:hover {
-    color: var(--color-acento); /* Se pinta de dorado al pasar el mouse */
+    color: var(--color-acento);
+    border-bottom-color: var(--color-acento);
 }
 
-/* Damos un espacio al contenido principal para que el menú fijo no lo tape */
+/* Ajuste del main para que el menú fijo no lo tape */
 main {
-    margin-top: 80px; 
+    margin-top: 90px;
 }
 
 /* =========================================
    4. SECCIÓN DE INICIO (HERO)
 ========================================= */
 #inicio {
-    height: 80vh; /* Ocupa el 80% de la altura de la pantalla */
+    height: 90vh; /* Ocupa más altura */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 0 20px;
+    position: relative;
+    background-color: #fcfcfc; /* Un gris muy sutil */
 }
 
 #inicio h1 {
-    font-size: 3rem;
-    margin-bottom: 15px;
+    font-size: 3.5rem; /* Título más grande y amigable */
+    font-weight: 700;
+    color: var(--color-texto-titulo);
+    margin-bottom: 20px;
 }
 
 #inicio p {
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: #a0a0a0; /* Un gris sutil para el subtítulo */
+    font-family: var(--fuente-acento); /* Subtítulo juguetón */
+    font-size: 1.5rem;
+    color: var(--color-mapache-marron);
+    margin-bottom: 10px;
+}
+
+/* Pequeña animación de rebote en el título */
+#inicio h1:hover {
+    animation: rebote 0.5s ease;
+}
+
+@keyframes rebote {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 /* =========================================
    5. SECCIONES GENERALES Y PORTAFOLIO
 ========================================= */
 section {
-    padding: 80px 20px; /* Da espacio arriba y abajo de cada sección */
-    max-width: 1200px; /* Evita que en pantallas gigantes la página se estire demasiado */
-    margin: 0 auto; /* Centra el contenido en la pantalla */
+    padding: 100px 20px; /* Más espacio profesional */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 section h2 {
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 50px;
-    color: var(--color-acento); /* Títulos en nuestro color dorado */
+    font-size: 2.5rem;
+    color: var(--color-texto-titulo);
+    margin-bottom: 60px;
 }
 
 /* La magia de CSS Grid para la galería */
 .grid-galeria {
     display: grid;
-    /* Esto crea columnas que se ajustan solas. Si la pantalla es pequeña, pone menos; si es grande, pone más */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px; /* Espacio entre las fotos */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Columnas más anchas */
+    gap: 40px; /* Más espacio */
 }
 
 figure {
-    overflow: hidden; /* Si la foto se hace grande, no se sale de su caja */
-    border-radius: 4px; /* Esquinas muy sutilmente redondeadas */
+    overflow: hidden;
+    border-radius: 8px; /* Esquinas más redondeadas */
     position: relative;
+    background-color: var(--color-fondo-claro);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto de UX Top al pasar el mouse */
+figure:hover {
+    transform: translateY(-5px); /* Rebote suave hacia arriba */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 figure img {
     width: 100%;
-    height: 400px; /* Forzamos una altura uniforme */
-    object-fit: cover; /* Evita que las fotos se deformen o aplasten */
-    transition: transform 0.5s ease; /* Prepara una animación suave */
-}
-
-/* Efecto premium al pasar el mouse sobre la foto */
-figure:hover img {
-    transform: scale(1.05); /* Hace un ligero zoom in */
+    height: 450px; /* Uniformidad */
+    object-fit: cover;
+    transition: none; /* Quitamos el zoom interior para mayor profesionalismo */
 }
 
 figcaption {
-    text-align: center;
-    padding-top: 15px;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    color: #a0a0a0;
+    text-align: left;
+    padding: 20px 25px;
+    font-weight: 600;
+    color: var(--color-texto-titulo);
 }
 
 /* =========================================
@@ -153,31 +201,33 @@ figcaption {
     display: flex;
     justify-content: center;
     gap: 40px;
-    flex-wrap: wrap; /* Si no caben, se pasan a la línea de abajo */
+    flex-wrap: wrap;
 }
 
 .paquete {
-    background-color: #1a1a1a; /* Un tono apenas más claro que el fondo */
-    padding: 40px 30px;
-    border-radius: 8px;
+    background-color: var(--color-fondo-claro);
+    padding: 60px 40px;
+    border-radius: 12px; /* Más redondeado */
     text-align: center;
-    width: 350px;
-    border: 1px solid #333; /* Borde sutil */
-    transition: transform 0.3s ease;
+    width: 380px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .paquete:hover {
-    transform: translateY(-10px); /* La tarjeta se "levanta" un poco al pasar el mouse */
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 
 .paquete h3 {
     margin-bottom: 20px;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--color-texto-titulo);
 }
 
 .precio {
-    font-size: 2.5rem;
-    color: var(--color-acento);
+    font-size: 3rem;
+    color: var(--color-acento); /* Naranja */
     margin-bottom: 30px;
 }
 
@@ -187,130 +237,118 @@ figcaption {
 }
 
 .paquete li {
+    font-size: 1rem;
+    color: var(--color-texto-base);
     margin-bottom: 15px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #333; /* Línea separadora entre características */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Destacamos el paquete más caro/completo */
+/* Destacamos el paquete premium */
 .paquete.premium {
-    border-color: var(--color-acento); /* Borde dorado */
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); /* Resplandor dorado suave */
+    border-color: var(--color-acento); /* Borde naranja */
+    box-shadow: 0 15px 40px rgba(246, 114, 17, 0.1); /* Resplandor naranja suave */
 }
 
 /* =========================================
    7. BOTÓN DE WHATSAPP FLOTANTE
 ========================================= */
 .btn-whatsapp {
-    position: fixed; /* Lo clava en la pantalla aunque hagas scroll */
-    bottom: 30px; /* Distancia desde abajo */
-    right: 30px; /* Distancia desde la derecha */
-    background-color: #25D366; /* Color oficial de WhatsApp */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--color-mapache-oscuro); /* Cambiar a oscuro/negro profesional */
     color: #ffffff;
     padding: 15px 25px;
-    border-radius: 50px; /* Bordes totalmente redondos como una píldora */
+    border-radius: 50px;
     font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para que resalte */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
 }
 
 .btn-whatsapp:hover {
-    background-color: #1ebe57; /* Un verde un poco más oscuro al pasar el mouse */
+    background-color: #333333; /* Un gris más oscuro */
     color: #ffffff;
 }
+
 /* =========================================
    8. MODAL / LIGHTBOX (Galería Interactiva)
 ========================================= */
 .modal {
-    display: none; /* Magia: Lo mantiene oculto hasta que JS diga lo contrario */
-    position: fixed; /* Lo clava en la pantalla */
-    z-index: 2000; /* Asegura que esté por encima de TODO, incluido el menú */
+    display: none;
+    position: fixed;
+    z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro al 90% de opacidad */
+    background-color: rgba(0, 0, 0, 0.95); /* Negro casi total para UX superior */
     justify-content: center;
     align-items: center;
-}
-
-.modal-contenido {
-    max-width: 90%;
-    max-height: 90vh; /* Que no mida más del 90% de la altura de la pantalla */
-    border-radius: 4px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 .cerrar-modal {
     position: absolute;
     top: 30px;
     right: 40px;
-    color: #fff;
+    color: #ffffff;
     font-size: 40px;
     font-weight: bold;
-    cursor: pointer; /* Cambia el cursor a una manita */
+    cursor: pointer;
     transition: color 0.3s;
 }
 
 .cerrar-modal:hover {
-    color: var(--color-acento); /* Se pinta dorado al pasar el mouse */
+    color: var(--color-acento); /* Se pinta naranja */
 }
-
 /* =========================================
-   9. DISEÑO RESPONSIVO (Móviles y Tablets)
+   9. PIE DE PÁGINA (FOOTER)
 ========================================= */
-
-/* Esta regla aplica SOLO si la pantalla mide 768 píxeles o menos de ancho */
-@media screen and (max-width: 768px) {
-    
-    /* 1. Ajustamos el Menú de Navegación */
-    nav ul {
-        gap: 15px; /* Reducimos el espacio entre los botones */
-    }
-    
-    nav a {
-        font-size: 0.8rem; /* Hacemos la letra un poco más pequeña */
-    }
-
-    /* 2. Ajustamos la Sección Principal (Hero) */
-    #inicio h1 {
-        font-size: 2rem; /* Achicamos el título para que no se desborde */
-    }
-
-    #inicio p {
-        font-size: 1rem;
-    }
-
-    /* 3. Reducimos el "aire" general de las secciones */
-    section {
-        padding: 50px 20px; /* Menos espacio arriba y abajo en móviles */
-    }
-
-    /* 4. Ajustamos los Paquetes de Inversión */
-    .paquete {
-        width: 100%; /* Ahora cada paquete ocupará todo el ancho de la pantalla */
-        padding: 30px 20px;
-    }
-
-    /* 5. Hacemos el botón de WhatsApp un poco más discreto */
-    .btn-whatsapp {
-        bottom: 15px;
-        right: 15px;
-        padding: 10px 20px;
-        font-size: 0.85rem;
-    }
+footer {
+    background-color: var(--color-mapache-oscuro); /* Negro/Gris muy oscuro */
+    padding: 40px 20px;
+    margin-top: 80px; /* Separación de la sección anterior */
+    border-top: 5px solid var(--color-acento); /* Una línea naranja en el borde superior para darle estilo */
 }
 
-/* Regla extra para celulares muy pequeños (ej. pantallas de 400px o menos) */
-@media screen and (max-width: 400px) {
-    nav ul {
-        flex-direction: column; /* Apila el menú de arriba hacia abajo en vez de lado a lado */
-        align-items: center;
-        gap: 10px;
-    }
-    
-    /* Si el menú se apila, ocupa más espacio, así que bajamos más el contenido */
-    main {
-        margin-top: 140px; 
-    }
+.footer-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Texto a la izq, redes a la der */
+    align-items: center;
+    flex-wrap: wrap; /* Permite que se adapte si la pantalla es muy pequeña */
+    gap: 20px;
+}
+
+.copyright p {
+    color: #a0a0a0; /* Un gris claro para que no brille tanto como el blanco puro */
+    font-size: 0.9rem;
+    margin: 0; /* Quitamos márgenes por defecto */
+}
+
+.redes-sociales {
+    display: flex;
+    gap: 15px;
+}
+
+.redes-sociales a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo sutilmente visible */
+    color: var(--color-fondo-claro); /* Ícono blanco */
+    border-radius: 50%; /* Los hace círculos perfectos */
+    border: none; /* Quitamos el borde que le pusimos a los enlaces del header */
+    transition: all 0.3s ease;
+}
+
+/* Efecto Hover UX Top */
+.redes-sociales a:hover {
+    background-color: var(--color-acento); /* Se llena del naranja Mapache */
+    color: var(--color-fondo-claro);
+    transform: translateY(-5px); /* Salta un poquito hacia arriba */
+    box-shadow: 0 5px 15px rgba(246, 114, 17, 0.4); /* Resplandor naranja */
 }
