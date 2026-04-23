@@ -1,0 +1,316 @@
+/* =========================================
+   1. VARIABLES (Nuestra paleta premium)
+========================================= */
+:root {
+    --color-fondo: #121212; /* Un negro suave, no absoluto */
+    --color-texto: #f5f5f7; /* Blanco roto para no cansar la vista */
+    --color-acento: #d4af37; /* Un dorado sutil para detalles elegantes */
+    --fuente-principal: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* =========================================
+   2. RESETEO BASE
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Fundamental para que los tamaños no se rompan */
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    line-height: 1.6; /* Mejora la lectura */
+    -webkit-font-smoothing: antialiased; /* Hace que las letras se vean más nítidas */
+}
+
+/* Tipografía general */
+h1, h2, h3 {
+    font-weight: 300; /* Letras delgadas dan un toque más elegante */
+    letter-spacing: 2px; /* Separar un poco las letras grita "premium" */
+    text-transform: uppercase;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-texto);
+    transition: color 0.3s ease; /* Transición suave al pasar el mouse */
+}
+
+/* =========================================
+   3. ENCABEZADO Y NAVEGACIÓN
+========================================= */
+header {
+    background-color: rgba(18, 18, 18, 0.95); /* Negro ligeramente transparente */
+    padding: 20px 0;
+    position: fixed; /* Se queda fijo al hacer scroll */
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Asegura que el menú siempre esté por encima de las fotos */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav ul {
+    list-style: none; /* Quita los puntos de la lista */
+    display: flex; /* Coloca los elementos uno al lado del otro */
+    justify-content: center; /* Los centra en la pantalla */
+    gap: 40px; /* Espacio entre cada botón del menú */
+}
+
+nav a {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+nav a:hover {
+    color: var(--color-acento); /* Se pinta de dorado al pasar el mouse */
+}
+
+/* Damos un espacio al contenido principal para que el menú fijo no lo tape */
+main {
+    margin-top: 80px; 
+}
+
+/* =========================================
+   4. SECCIÓN DE INICIO (HERO)
+========================================= */
+#inicio {
+    height: 80vh; /* Ocupa el 80% de la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+#inicio h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+#inicio p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #a0a0a0; /* Un gris sutil para el subtítulo */
+}
+
+/* =========================================
+   5. SECCIONES GENERALES Y PORTAFOLIO
+========================================= */
+section {
+    padding: 80px 20px; /* Da espacio arriba y abajo de cada sección */
+    max-width: 1200px; /* Evita que en pantallas gigantes la página se estire demasiado */
+    margin: 0 auto; /* Centra el contenido en la pantalla */
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 50px;
+    color: var(--color-acento); /* Títulos en nuestro color dorado */
+}
+
+/* La magia de CSS Grid para la galería */
+.grid-galeria {
+    display: grid;
+    /* Esto crea columnas que se ajustan solas. Si la pantalla es pequeña, pone menos; si es grande, pone más */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Espacio entre las fotos */
+}
+
+figure {
+    overflow: hidden; /* Si la foto se hace grande, no se sale de su caja */
+    border-radius: 4px; /* Esquinas muy sutilmente redondeadas */
+    position: relative;
+}
+
+figure img {
+    width: 100%;
+    height: 400px; /* Forzamos una altura uniforme */
+    object-fit: cover; /* Evita que las fotos se deformen o aplasten */
+    transition: transform 0.5s ease; /* Prepara una animación suave */
+}
+
+/* Efecto premium al pasar el mouse sobre la foto */
+figure:hover img {
+    transform: scale(1.05); /* Hace un ligero zoom in */
+}
+
+figcaption {
+    text-align: center;
+    padding-top: 15px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: #a0a0a0;
+}
+
+/* =========================================
+   6. PAQUETES DE INVERSIÓN
+========================================= */
+.contenedor-paquetes {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap; /* Si no caben, se pasan a la línea de abajo */
+}
+
+.paquete {
+    background-color: #1a1a1a; /* Un tono apenas más claro que el fondo */
+    padding: 40px 30px;
+    border-radius: 8px;
+    text-align: center;
+    width: 350px;
+    border: 1px solid #333; /* Borde sutil */
+    transition: transform 0.3s ease;
+}
+
+.paquete:hover {
+    transform: translateY(-10px); /* La tarjeta se "levanta" un poco al pasar el mouse */
+}
+
+.paquete h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.precio {
+    font-size: 2.5rem;
+    color: var(--color-acento);
+    margin-bottom: 30px;
+}
+
+.paquete ul {
+    list-style: none;
+    text-align: left;
+}
+
+.paquete li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333; /* Línea separadora entre características */
+}
+
+/* Destacamos el paquete más caro/completo */
+.paquete.premium {
+    border-color: var(--color-acento); /* Borde dorado */
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); /* Resplandor dorado suave */
+}
+
+/* =========================================
+   7. BOTÓN DE WHATSAPP FLOTANTE
+========================================= */
+.btn-whatsapp {
+    position: fixed; /* Lo clava en la pantalla aunque hagas scroll */
+    bottom: 30px; /* Distancia desde abajo */
+    right: 30px; /* Distancia desde la derecha */
+    background-color: #25D366; /* Color oficial de WhatsApp */
+    color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 50px; /* Bordes totalmente redondos como una píldora */
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para que resalte */
+    z-index: 1000;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1ebe57; /* Un verde un poco más oscuro al pasar el mouse */
+    color: #ffffff;
+}
+/* =========================================
+   8. MODAL / LIGHTBOX (Galería Interactiva)
+========================================= */
+.modal {
+    display: none; /* Magia: Lo mantiene oculto hasta que JS diga lo contrario */
+    position: fixed; /* Lo clava en la pantalla */
+    z-index: 2000; /* Asegura que esté por encima de TODO, incluido el menú */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro al 90% de opacidad */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contenido {
+    max-width: 90%;
+    max-height: 90vh; /* Que no mida más del 90% de la altura de la pantalla */
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer; /* Cambia el cursor a una manita */
+    transition: color 0.3s;
+}
+
+.cerrar-modal:hover {
+    color: var(--color-acento); /* Se pinta dorado al pasar el mouse */
+}
+
+/* =========================================
+   9. DISEÑO RESPONSIVO (Móviles y Tablets)
+========================================= */
+
+/* Esta regla aplica SOLO si la pantalla mide 768 píxeles o menos de ancho */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Ajustamos el Menú de Navegación */
+    nav ul {
+        gap: 15px; /* Reducimos el espacio entre los botones */
+    }
+    
+    nav a {
+        font-size: 0.8rem; /* Hacemos la letra un poco más pequeña */
+    }
+
+    /* 2. Ajustamos la Sección Principal (Hero) */
+    #inicio h1 {
+        font-size: 2rem; /* Achicamos el título para que no se desborde */
+    }
+
+    #inicio p {
+        font-size: 1rem;
+    }
+
+    /* 3. Reducimos el "aire" general de las secciones */
+    section {
+        padding: 50px 20px; /* Menos espacio arriba y abajo en móviles */
+    }
+
+    /* 4. Ajustamos los Paquetes de Inversión */
+    .paquete {
+        width: 100%; /* Ahora cada paquete ocupará todo el ancho de la pantalla */
+        padding: 30px 20px;
+    }
+
+    /* 5. Hacemos el botón de WhatsApp un poco más discreto */
+    .btn-whatsapp {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Regla extra para celulares muy pequeños (ej. pantallas de 400px o menos) */
+@media screen and (max-width: 400px) {
+    nav ul {
+        flex-direction: column; /* Apila el menú de arriba hacia abajo en vez de lado a lado */
+        align-items: center;
+        gap: 10px;
+    }
+    
+    /* Si el menú se apila, ocupa más espacio, así que bajamos más el contenido */
+    main {
+        margin-top: 140px; 
+    }
+}

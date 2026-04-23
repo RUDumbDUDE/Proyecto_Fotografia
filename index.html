@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio Fotográfico | Capturando Momentos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#galeria">Portafolio</a></li>
+                <li><a href="#paquetes">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <h1>Bienvenidos al Estudio</h1>
+            <p>Transformamos tus momentos en recuerdos eternos.</p>
+        </section>
+        <section id="nosotros">
+            <h2>Detrás del Lente</h2>
+            <p>Somos un equipo apasionado por la luz, las sombras y las emociones reales. Nos dedicamos a documentar historias auténticas con un enfoque cinematográfico y minimalista.</p>
+        </section>
+
+        <section id="galeria">
+            <h2>Nuestras Colecciones</h2>
+            <div class="grid-galeria">
+                <figure>
+                    <img src="img/muestra1.jpg" alt="Sesión de bodas en exteriores">
+                    <figcaption>Bodas y Romance</figcaption>
+                </figure>
+                <figure>
+                    <img src="img/muestra2.jpg" alt="Retrato corporativo en estudio">
+                    <figcaption>Retratos y Editorial</figcaption>
+                </figure>
+                <figure>
+                    <img src="img/muestra3.jpg" alt="Fotografía de producto comercial">
+                    <figcaption>Comercial y Marcas</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="paquetes">
+            <h2>Inversión</h2>
+            <div class="contenedor-paquetes">
+                <article class="paquete">
+                    <h3>Sesión Esencial</h3>
+                    <p class="precio">$XXX</p>
+                    <ul>
+                        <li>1 hora de sesión en estudio</li>
+                        <li>15 fotografías en alta resolución</li>
+                        <li>Galería digital privada</li>
+                    </ul>
+                </article>
+
+                <article class="paquete premium">
+                    <h3>Experiencia Completa</h3>
+                    <p class="precio">$XXX</p>
+                    <ul>
+                        <li>3 horas de sesión (estudio + exteriores)</li>
+                        <li>Todas las fotografías editadas</li>
+                        <li>Photobook impreso de lujo</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <div id="modal-imagen" class="modal">
+        <span class="cerrar-modal">&times;</span> <img class="modal-contenido" id="img-ampliada" alt="Imagen ampliada">
+    </div>
+    <a href="https://wa.me/+52 1 139 5367?text=Hola,%20me%20gustaría%20cotizar%20una%20sesión." class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+        Agendar Sesión por WhatsApp
+    </a>
+</body>
+</html>
