@@ -32,6 +32,7 @@ body {
     font-family: var(--fuente-base);
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
+    position: relative;
 }
 
 /* Tipografía general */

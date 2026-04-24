@@ -32,3 +32,39 @@ modal.addEventListener('click', (evento) => {
         modal.style.display = 'none';
     }
 });
+
+// =========================================
+// 4. LÓGICA DEL BOTÓN DE WHATSAPP (Evitar el Footer)
+// =========================================
+const btnWhatsapp = document.querySelector('.btn-whatsapp');
+const footer = document.querySelector('footer');
+
+// Le decimos a JS que vigile cada vez que el usuario hace "scroll"
+window.addEventListener('scroll', () => {
+    
+    // Calculamos dónde está la línea inferior de la pantalla en este momento
+    const scrollAbajo = window.scrollY + window.innerHeight;
+    
+    // Calculamos dónde empieza exactamente el footer en el documento
+    const inicioFooter = document.documentElement.scrollHeight - footer.offsetHeight;
+
+    if (scrollAbajo > inicioFooter) {
+        // Si la pantalla ya tocó el footer: 
+        // Le quitamos el 'fixed' (flotante) y lo hacemos 'absolute' (se pega a la página)
+        btnWhatsapp.style.position = 'absolute';
+        
+        // Lo ponemos justo encima de la altura del footer, más un pequeño espacio de 20px
+        btnWhatsapp.style.bottom = (footer.offsetHeight + 20) + 'px'; 
+    } else {
+        // Si todavía estamos arriba navegando por las fotos:
+        // Se queda flotando normal
+        btnWhatsapp.style.position = 'fixed';
+        
+        // Respetamos los espacios que le pusimos en CSS (15px en móvil, 30px en PC)
+        if (window.innerWidth <= 768) {
+            btnWhatsapp.style.bottom = '15px';
+        } else {
+            btnWhatsapp.style.bottom = '30px';
+        }
+    }
+});
