@@ -49,53 +49,55 @@ a {
 }
 
 /* =========================================
-   3. ENCABEZADO Y NAVEGACIÓN
+   3. ENCABEZADO Y NAVEGACIÓN (VERSIÓN NARANJA)
 ========================================= */
 header {
-    background-color: var(--color-fondo-claro);
-    padding: 15px 40px; /* Da espacio arriba/abajo y a los lados */
+    background-color: var(--color-fondo-naranja); /* Aquí aplicamos el naranja del logo */
+    padding: 15px 40px;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    border-bottom: none; /* Quitamos la línea gris porque el color ya separa la sección */
+    box-shadow: 0 4px 15px rgba(246, 114, 17, 0.4); /* Le damos una sombra naranja brillante */
 }
 
 nav {
-    display: flex; /* Convierte el nav en un contenedor flexible */
-    justify-content: space-between; /* Empuja el logo a la izquierda y la lista a la derecha */
-    align-items: center; /* ¡Esta es la línea clave! Centra todo verticalmente */
-    max-width: 1200px; /* Mantiene el menú alineado con el resto de la página */
-    margin: 0 auto; /* Centra el contenedor del nav en pantallas grandes */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logo-header img {
-    height: 60px; /* Tamaño ideal para el logo del mapache */
-    display: block; /* Evita un espacio extra debajo de la imagen */
+    height: 60px;
+    display: block;
     transition: transform 0.3s ease;
 }
 
 .logo-header img:hover {
-    transform: scale(1.05); /* Pequeño rebote al pasar el mouse por el logo */
+    transform: scale(1.05);
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 40px; /* Separación entre los enlaces */
+    gap: 40px;
 }
 
 nav a {
     font-size: 1rem;
-    font-weight: 600; /* Letra un poco más gruesa para que destaque */
-    color: var(--color-texto-base);
+    font-weight: 600;
+    color: var(--color-fondo-claro); /* Letras BLANCAS para contrastar con el naranja */
     border-bottom: 2px solid transparent;
-    padding-bottom: 5px; /* Espacio entre el texto y la línea de subrayado */
+    padding-bottom: 5px;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
 nav a:hover {
-    color: var(--color-acento);
-    border-bottom-color: var(--color-acento);
+    color: var(--color-mapache-oscuro); /* Al pasar el mouse, las letras se pintan del negro del antifaz */
+    border-bottom-color: var(--color-mapache-oscuro);
 }
 
 /* Ajuste del main para que el menú fijo no lo tape */
