@@ -58,7 +58,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    border-bottom: none; /* Quitamos la línea gris porque el color ya separa la sección */
+    border-bottom: none;
     box-shadow: 0 4px 15px rgba(246, 114, 17, 0.4); /* Le damos una sombra naranja brillante */
 }
 
@@ -353,4 +353,76 @@ footer {
     color: var(--color-fondo-claro);
     transform: translateY(-5px); /* Salta un poquito hacia arriba */
     box-shadow: 0 5px 15px rgba(246, 114, 17, 0.4); /* Resplandor naranja */
+}
+/* =========================================
+   10. DISEÑO RESPONSIVO (Móviles y Tablets)
+========================================= */
+
+@media screen and (max-width: 768px) {
+    
+    /* 1. Ajustamos el Header y la Navegación (Apilado) */
+    header {
+        padding: 10px 15px; 
+    }
+
+    nav {
+        flex-direction: column; 
+        gap: 15px; 
+    }
+
+    .logo-header img {
+        height: 50px; 
+    }
+
+    nav ul {
+        width: 100%;
+        justify-content: center; 
+        gap: 15px; 
+        flex-wrap: wrap; 
+        padding: 0; 
+    }
+
+    nav a {
+        font-size: 0.85rem; 
+    }
+
+    /* Como el menú ahora es más alto, empujamos el contenido más abajo */
+    main {
+        margin-top: 140px; 
+    }
+
+    /* 2. Ajustamos la Sección Principal (Hero) */
+    #inicio h1 {
+        font-size: 2.2rem; /* Achicamos el título para que no se desborde */
+    }
+
+    #inicio p {
+        font-size: 1.2rem;
+    }
+
+    /* 3. Reducimos el "aire" general de las secciones */
+    section {
+        padding: 60px 20px; 
+    }
+
+    /* 4. Ajustamos los Paquetes de Inversión */
+    .paquete {
+        width: 100%; /* Cada paquete ocupa todo el ancho */
+        padding: 40px 20px;
+    }
+
+    /* 5. Hacemos el botón de WhatsApp un poco más discreto */
+    .btn-whatsapp {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+
+    /* 6. Ajustes del Footer para que no se amontone */
+    .footer-contenido {
+        flex-direction: column; /* Pone el texto arriba y las redes abajo */
+        text-align: center;
+        gap: 30px;
+    }
 }
