@@ -11,6 +11,7 @@
 </head>
 <body>
 
+    <!-- 1. HEADER -->
     <header>
         <nav>
             <a href="#inicio" class="logo-header">
@@ -25,11 +26,13 @@
         </nav>
     </header>
 
+    <!-- 2. CONTENIDO PRINCIPAL -->
     <main>
         <section id="inicio">
             <h1>Bienvenidos a MAPARD</h1>
             <p>Transformamos tus momentos en recuerdos.</p>
         </section>
+        
         <section id="nosotros">
             <h2>Detrás del Lente</h2>
             <p>El mangonete mamberroi se la come sin pretextos en el unmatsh</p>
@@ -55,38 +58,51 @@
 
         <section id="servicios-preview">
             <h2>Nuestros Servicios</h2>
-    <div class="carousel-container">
-        <!-- Las imágenes que se desvanecen -->
-        <div class="carousel-slide active">
-            <img src="img/boda-show.jpg" alt="Bodas">
-            <div class="slide-info"><h3>Bodas y Romance</h3></div>
-        </div>
-        <div class="carousel-slide">
-            <img src="img/xv-show.jpg" alt="XV Años">
-            <div class="slide-info"><h3>XV Años Mágicos</h3></div>
-        </div>
-        <div class="carousel-slide">
-            <img src="img/comercial-show.jpg" alt="Comercial">
-            <div class="slide-info"><h3>Marcas e Impacto</h3></div>
-        </div>
+            <div class="carousel-container">
+                <!-- Las imágenes que se desvanecen -->
+                <div class="carousel-slide active">
+                    <img src="img/boda-show.jpg" alt="Bodas">
+                    <div class="slide-info"><h3>Bodas y Romance</h3></div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/xv-show.jpg" alt="XV Años">
+                    <div class="slide-info"><h3>XV Años Mágicos</h3></div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/comercial-show.jpg" alt="Comercial">
+                    <div class="slide-info"><h3>Marcas e Impacto</h3></div>
+                </div>
 
-        <!-- El botón de acción -->
-        <div class="carousel-overlay">
-            <a href="servicios.html" class="btn-principal">Ver listado de servicios</a>
-        </div>
-    </div>
-</section>
-
-        <!-- <section id="categorias">
-            <h2>Nuestros Servicios</h2>
-            <div id="grid-categorias" class="grid-galeria"></div>
+                <!-- El botón de acción -->
+                <div class="carousel-overlay">
+                    <a href="servicios.html" class="btn-principal">Ver listado de servicios</a>
+                </div>
+            </div>
         </section>
-    </main> -->
+    </main> <!-- ¡Etiqueta de cierre recuperada! -->
 
-    <script src="script.js"></script>
+    <!-- 3. MODALES GLOBALES -->
     <div id="modal-imagen" class="modal">
-        <span class="cerrar-modal">&times;</span> <img class="modal-contenido" id="img-ampliada" alt="Imagen ampliada">
+        <span class="cerrar-modal">&times;</span> 
+        <img class="modal-contenido" id="img-ampliada" alt="Imagen ampliada">
     </div>
+    
+    <div id="modal-precios" class="modal">
+        <div class="modal-caja-blanca">
+            <span class="cerrar-precios">&times;</span>
+            <h2 id="titulo-modal-precios">Paquetes</h2>
+            <div id="contenedor-dinamico-precios" class="contenedor-paquetes">
+                <!-- JS inyecta los precios aquí -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. BOTÓN DE WHATSAPP -->
+    <a href="https://wa.me/5216141395367?text=Hola,%20me%20gustaría%20cotizar%20una%20sesión." class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+        Agendar Sesión por WhatsApp
+    </a>
+
+    <!-- 5. FOOTER -->
     <footer id="contacto">
         <div class="footer-contenido">
             <div class="copyright">
@@ -116,16 +132,8 @@
             </div>
         </div>
     </footer>
-    <div id="modal-precios" class="modal" style="display: none; background-color: rgba(0,0,0,0.8); position: fixed; top:0; left:0; width:100%; height:100%; z-index: 9999; justify-content: center; align-items: center;">
-    <div class="modal-caja-blanca" style="background: white; padding: 40px; border-radius: 15px; max-width: 500px; width: 90%; color: black; text-align: center;">
-        <span class="cerrar-precios" style="cursor: pointer; float: right; font-size: 28px;">&times;</span>
-        <h2 id="titulo-modal-precios">Cargando...</h2>
-        <div id="contenedor-dinamico-precios">
-            </div>
-    </div>
-</div>
-    <a href="https://wa.me/5216141395367?text=Hola,%20me%20gustaría%20cotizar%20una%20sesión." class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
-    Agendar Sesión por WhatsApp
-</a>
-<script src="script.js"></script> </body>
+
+    <!-- 6. SCRIPTS -->
+    <script src="script.js"></script> 
+</body>
 </html>
