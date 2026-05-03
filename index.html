@@ -19,7 +19,7 @@
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#galeria">Colecciones</a></li>
-                <li><a href="#paquetes">Mapache Packs</a></li>
+                <li><a href="#servicios-preview">Mapache Packs</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -53,61 +53,35 @@
             </div>
         </section>
 
-        <section id="paquetes">
-            <h2>Paquetes</h2>
-            <div class="contenedor-paquetes">
-                <article class="paquete">
-                    <h3>Opcion A</h3>
-                    <p class="precio">$5,900</p>
-                    <ul>
-                        <li>Precio: $5,900 MX</li>
-                        <li>Total de fotografías: De 20 a 50 fotografías</li>
-                        <li>Sesión casual</li>
-                        <li>Sesión formal</li>
-                        <li>Impresión de las FOTOS entregadas en digital</li>
-                        <li>1 BANNER con la fotografía de la XVÑERA</li>
-                        <li>Entrega de FOTOS digitales en álbum digital</li>
-                        <li>Cobertura COMPLETA del evento</li>
-                        <li>Entrega de un PEDESTAL que incluye FOTO principal y MEMORIA USB</li>
-                    </ul>
-                </article>
+        <section id="servicios-preview">
+            <h2>Nuestros Servicios</h2>
+    <div class="carousel-container">
+        <!-- Las imágenes que se desvanecen -->
+        <div class="carousel-slide active">
+            <img src="img/boda-show.jpg" alt="Bodas">
+            <div class="slide-info"><h3>Bodas y Romance</h3></div>
+        </div>
+        <div class="carousel-slide">
+            <img src="img/xv-show.jpg" alt="XV Años">
+            <div class="slide-info"><h3>XV Años Mágicos</h3></div>
+        </div>
+        <div class="carousel-slide">
+            <img src="img/comercial-show.jpg" alt="Comercial">
+            <div class="slide-info"><h3>Marcas e Impacto</h3></div>
+        </div>
 
-                <article class="paquete premium">
-                    <h3>XV Años</h3>
-                    <p class="precio">$15,00</p>
-                    <ul>
-                        <li>Precio: $15,500 MX</li>
-                        <li>Total de fotografías: De 100 a 200</li>
-                        <li>Sesión casual</li>
-                        <li>Sesión formal</li>
-                        <li>Impresión de las FOTOS entregadas en digital</li>
-                        <li>Entrega de FOTOS digitales en álbum digital</li>
-                        <li>Impresión de 3 BANNERS</li>
-                        <li>Entrega de un PEDESTAL que incluye FOTO principal y MEMORIA USB</li>
-                        <li>Cobertura COMPLETA del evento</li>
-                        <li>FOTOLIBRO</li>
-                    </ul>
-                </article>
+        <!-- El botón de acción -->
+        <div class="carousel-overlay">
+            <a href="servicios.html" class="btn-principal">Ver listado de servicios</a>
+        </div>
+    </div>
+</section>
 
-                <article class="paquete">
-                    <h3>Opcion B</h3>
-                    <p class="precio">$8,700</p>
-                    <ul>
-                        <li>Precio: $8,700 MX</li>
-                        <li>Total de fotografías: De 50 a 100 fotografías</li>
-                        <li>Sesión casual</li>
-                        <li>Sesión formal</li>
-                        <li>Impresión de las FOTOS entregadas en digital</li>
-                        <li>Entrega de FOTOS digitales en álbum digital</li>
-                        <li>2 BANNER con la fotografía de la XVÑERA</li>
-                        <li>Entrega de un PEDESTAL que incluye FOTO principal y MEMORIA USB</li>
-                        <li>Cobertura COMPLETA del evento</li>
-                        <li>FOTOLIBRO</li>
-                    </ul>
-                </article>
-            </div>
+        <!-- <section id="categorias">
+            <h2>Nuestros Servicios</h2>
+            <div id="grid-categorias" class="grid-galeria"></div>
         </section>
-    </main>
+    </main> -->
 
     <script src="script.js"></script>
     <div id="modal-imagen" class="modal">
@@ -142,8 +116,16 @@
             </div>
         </div>
     </footer>
+    <div id="modal-precios" class="modal" style="display: none; background-color: rgba(0,0,0,0.8); position: fixed; top:0; left:0; width:100%; height:100%; z-index: 9999; justify-content: center; align-items: center;">
+    <div class="modal-caja-blanca" style="background: white; padding: 40px; border-radius: 15px; max-width: 500px; width: 90%; color: black; text-align: center;">
+        <span class="cerrar-precios" style="cursor: pointer; float: right; font-size: 28px;">&times;</span>
+        <h2 id="titulo-modal-precios">Cargando...</h2>
+        <div id="contenedor-dinamico-precios">
+            </div>
+    </div>
+</div>
     <a href="https://wa.me/5216141395367?text=Hola,%20me%20gustaría%20cotizar%20una%20sesión." class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
     Agendar Sesión por WhatsApp
 </a>
-</body>
+<script src="script.js"></script> </body>
 </html>
