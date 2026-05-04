@@ -16,7 +16,40 @@
 }
 
 /* =========================================
-   2. RESETEO BASE Y TIPOGRAFÍA
+   2.VARIABLES DE MODO OSCURO
+========================================= */
+body.dark-mode {
+    /* Cambiamos el blanco por un gris carbón súper elegante */
+    --color-fondo-claro: #18181b; 
+    /* El texto de lectura se vuelve gris claro para no cansar la vista */
+    --color-texto-base: #d4d4d8; 
+    /* Los títulos resaltan en blanco puro */
+    --color-texto-titulo: #ffffff; 
+    /* Hacemos el naranja un 10% más oscuro para que no lastime en la noche */
+    --color-fondo-naranja: #db6209; 
+    --color-mapache-oscuro: #ffffff; /* Ajustamos el antifaz a blanco para dar contraste */
+}
+
+/* Diseño del Botón en el Menú */
+.btn-tema {
+    background: none;
+    border: none;
+    color: var(--color-fondo-claro);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.btn-tema:hover {
+    transform: scale(1.1);
+    color: var(--color-mapache-oscuro);
+}
+
+/* =========================================
+   3. RESETEO BASE Y TIPOGRAFÍA
 ========================================= */
 * {
     margin: 0;
@@ -26,6 +59,7 @@
 
 body {
     background-color: var(--color-fondo-claro);
+    transition: background-color 0.4s ease, color 0.4s ease;
     color: var(--color-texto-base);
     font-family: var(--fuente-base);
     line-height: 1.8;
@@ -47,7 +81,7 @@ a {
 }
 
 /* =========================================
-   3. ENCABEZADO Y NAVEGACIÓN
+   4. ENCABEZADO Y NAVEGACIÓN
 ========================================= */
 header {
     background-color: var(--color-fondo-naranja);
@@ -102,7 +136,7 @@ main {
 }
 
 /* =========================================
-   4. SECCIÓN DE INICIO (HERO)
+   5. SECCIÓN DE INICIO (HERO)
 ========================================= */
 #inicio {
     height: 90vh;
@@ -113,7 +147,7 @@ main {
     text-align: center;
     padding: 0 20px;
     position: relative;
-    background-color: #fcfcfc;
+    background-color: transparent;
 }
 
 #inicio h1 {
@@ -140,7 +174,7 @@ main {
 }
 
 /* =========================================
-   5. SECCIONES GENERALES Y GALERÍA
+   6. SECCIONES GENERALES Y GALERÍA
 ========================================= */
 section {
     padding: 100px 20px;
@@ -189,7 +223,7 @@ figcaption {
 }
 
 /* =========================================
-   6. TARJETAS DE PAQUETES (Dentro del Modal)
+   7. TARJETAS DE PAQUETES (Dentro del Modal)
 ========================================= */
 .contenedor-paquetes {
     display: flex;
@@ -244,7 +278,7 @@ figcaption {
 }
 
 /* =========================================
-   7. TARJETAS DE CATEGORÍAS (LISTADO)
+   8. TARJETAS DE CATEGORÍAS (LISTADO)
 ========================================= */
 .categoria-card {
     background-color: var(--color-fondo-claro);
@@ -296,7 +330,7 @@ figcaption {
 }
 
 /* =========================================
-   8. BOTÓN DE WHATSAPP FLOTANTE
+   9. BOTÓN DE WHATSAPP FLOTANTE
 ========================================= */
 .btn-whatsapp {
     position: fixed;
@@ -317,8 +351,19 @@ figcaption {
     color: #ffffff;
 }
 
+body.dark-mode .btn-whatsapp {
+    background-color: var(--color-fondo-naranja); /* Toma el color naranja del Header */
+    color: #ffffff; /* Letras blancas */
+    box-shadow: 0 4px 15px rgba(246, 114, 17, 0.4); /* Sombreado naranja */
+}
+
+body.dark-mode .btn-whatsapp:hover {
+    background-color: #ffffff; /* Al pasar el mouse se invierte a blanco */
+    color: var(--color-fondo-naranja);
+}
+
 /* =========================================
-   9. MODALES (GALERÍA Y PRECIOS)
+   10. MODALES (GALERÍA Y PRECIOS)
 ========================================= */
 /* Base común para oscurecer el fondo */
 .modal, #modal-precios {
@@ -383,10 +428,10 @@ figcaption {
 }
 
 /* =========================================
-   10. PIE DE PÁGINA (FOOTER)
+   11. PIE DE PÁGINA (FOOTER)
 ========================================= */
 footer {
-    background-color: var(--color-mapache-oscuro);
+    background-color: #1d1d1f;
     padding: 40px 20px;
     margin-top: 80px;
     border-top: 5px solid var(--color-acento);
@@ -419,7 +464,7 @@ footer {
     width: 45px;
     height: 45px;
     background-color: rgba(255, 255, 255, 0.05);
-    color: var(--color-fondo-claro);
+    color: #ffffff;
     border-radius: 50%;
     transition: all 0.3s ease;
 }
@@ -432,7 +477,7 @@ footer {
 }
 
 /* =========================================
-   11. CAROUSEL / RULETA DE SERVICIOS (NUEVO)
+   12. CAROUSEL / RULETA DE SERVICIOS (NUEVO)
 ========================================= */
 #servicios-preview {
     height: 80vh;
@@ -506,7 +551,7 @@ footer {
 }
 
 /* =========================================
-   12. DISEÑO RESPONSIVO (SIEMPRE AL FINAL)
+   13. DISEÑO RESPONSIVO (SIEMPRE AL FINAL)
 ========================================= */
 @media screen and (max-width: 768px) {
     

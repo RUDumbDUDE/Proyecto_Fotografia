@@ -157,3 +157,59 @@ if (btnWhatsapp && footer) {
         }
     });
 }
+// =========================================
+// 5. MODO OSCURO INTELIGENTE
+// =========================================
+const btnTema = document.getElementById('toggle-tema');
+const iconoLuna = document.getElementById('icono-luna');
+const iconoSol = document.getElementById('icono-sol');
+const body = document.body;
+
+// Función que aplica o quita el modo oscuro visualmente
+function aplicarTema(esOscuro) {
+    if (esOscuro) {
+        body.classList.add('dark-mode');
+        if(iconoLuna && iconoSol) {
+            iconoLuna.style.display = 'none';
+            iconoSol.style.display = 'block';
+        }
+    } else {
+        body.classList.remove('dark-mode');
+        if(iconoLuna && iconoSol) {
+            iconoLuna.style.display = 'block';
+            iconoSol.style.display = 'none';
+        }
+    }
+}
+
+// Función que decide qué tema poner al abrir la página
+function inicializarTema() {
+    // 1. ¿El usuario ya guardó una preferencia antes en nuestro sitio?
+    const temaGuardado = localStorage.getItem('mapard-tema');
+
+    if (temaGuardado) {
+        // Respetamos su elección manual
+        aplicarTema(temaGuardado === 'dark');
+    } else {
+        // 2. Si es su primera vez, revisamos el reloj de su computadora
+        const horaActual = new Date().getHours();
+        // Definimos que de 19:00 (7 PM) a 05:59 AM es de noche
+        const esDeNoche = horaActual >= 19 || horaActual < 6;
+        
+        aplicarTema(esDeNoche);
+    }
+}
+
+// Evento al presionar el botón del Sol/Luna
+if (btnTema) {
+    btnTema.addEventListener('click', () => {
+        // Verificamos en qué modo estamos actualmente
+        const estaOscuro = body.classList.contains('dark-mode');
+        
+        // Lo cambiamos al opuesto
+        aplicarTema(!estaOscuro);
+        
+        // Guardamos su decisión en la memoria de su navegador
+        localStorage.setItem('mapard-tema', !estaOscuro ? 'dark' : 'light');
+    });
+}
