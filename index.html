@@ -32,6 +32,11 @@
                     </button>
                 </li>
             </ul>
+            
+            <div class="buscador-container">
+                <input type="text" id="buscador-servicios" placeholder="Buscar servicio (ej. Bodas)..." autocomplete="off">
+                <ul id="resultados-busqueda" class="dropdown-resultados"></ul>
+            </div>
         </nav>
     </header>
 
@@ -47,21 +52,43 @@
             <p>El mangonete mamberroi se la come sin pretextos en el unmatsh</p>
         </section>
 
-        <section id="galeria">
+      <section id="galeria">
             <h2>Nuestras Colecciones</h2>
-            <div class="grid-galeria">
-                <figure>
-                    <img src="img/Paquetes/BODAS/IMG_9941.PNG" alt="Sesión de bodas en exteriores">
-                    <figcaption>Bodas y Romance</figcaption>
-                </figure>
-                <figure>
-                    <img src="img/Paquetes/Bautizo/IMG_9962.PNG" alt="Retrato corporativo en estudio">
-                    <figcaption>Bautizos</figcaption>
-                </figure>
-                <figure>
-                    <img src="img/Paquetes/.PNG" alt="Fotografía de producto comercial">
-                    <figcaption>Comercial y Marcas</figcaption>
-                </figure>
+            <!-- Nuevo contenedor para posicionar las flechas -->
+            <div class="carousel-wrapper">
+                <!-- Flecha Izquierda -->
+                <button id="btn-prev-galeria" class="slider-arrow prev-arrow" aria-label="Anterior">&#10094;</button>
+                
+                <div id="slider-galeria" class="grid-galeria">
+                    <figure>
+                        <img src="img/Paquetes/BODAS/IMG_9941.PNG" alt="Sesión de bodas en exteriores">
+                        <figcaption>Bodas y Romance</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="img/Paquetes/Bautizo/IMG_9962.PNG" alt="Bautizos">
+                        <figcaption>Bautizos</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="img/Paquetes/.PNG" alt="Fotografía de producto comercial">
+                        <figcaption>Comercial y Marcas</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="img/Paquetes/Bautizo/IMG_9962.PNG" alt="Bautizos">
+                        <figcaption>Bautizos</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="img/Paquetes/Bautizo/IMG_9962.PNG" alt="Bautizos">
+                        <figcaption>Bautizos</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="img/Paquetes/Bautizo/IMG_9962.PNG" alt="Bautizos">
+                        <figcaption>Bautizos</figcaption>
+                    </figure>
+                    <!-- Puedes agregar más <figure> aquí y se irán sumando a la ruleta -->
+                </div>
+
+                <!-- Flecha Derecha -->
+                <button id="btn-next-galeria" class="slider-arrow next-arrow" aria-label="Siguiente">&#10095;</button>
             </div>
         </section>
 

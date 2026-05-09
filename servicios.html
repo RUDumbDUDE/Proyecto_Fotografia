@@ -32,6 +32,11 @@
                     </button>
                 </li>
             </ul>
+            
+            <div class="buscador-container">
+                <input type="text" id="buscador-servicios" placeholder="Buscar servicio (ej. Bodas)..." autocomplete="off">
+                <ul id="resultados-busqueda" class="dropdown-resultados"></ul>
+            </div>
         </nav>
     </header>
 
@@ -45,8 +50,17 @@
 
         <!-- El contenedor donde nuestro JavaScript inyectará las 11 tarjetas -->
         <section id="categorias">
+            <!-- Nuevo contenedor para posicionar las flechas -->
+            <div class="carousel-wrapper">
+                <!-- Flecha Izquierda -->
+                <button id="btn-prev-galeria" class="slider-arrow prev-arrow" aria-label="Anterior">&#10094;</button>
+
             <div id="grid-categorias" class="grid-galeria">
                 <!-- JS hace la magia aquí -->
+            </div>
+            
+            <!-- Flecha Derecha -->
+                <button id="btn-next-galeria" class="slider-arrow next-arrow" aria-label="Siguiente">&#10095;</button>
             </div>
         </section>
     </main>

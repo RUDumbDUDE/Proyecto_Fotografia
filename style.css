@@ -49,6 +49,25 @@ body.dark-mode {
 }
 
 /* =========================================
+   AJUSTES ESPECÍFICOS: MODAL EN MODO OSCURO
+========================================= */
+/* Hacemos que las tarjetas de precios resalten del fondo del modal */
+body.dark-mode .paquete {
+    background-color: #27272a; /* Un gris sutilmente más claro que el fondo */
+    border-color: #3f3f46; /* Borde gris oscuro para definir la tarjeta */
+}
+
+/* Aclaramos las líneas separadoras de la lista de detalles */
+body.dark-mode .paquete li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+/* Aseguramos que la sombra del paquete premium luzca bien en la oscuridad */
+body.dark-mode .paquete.premium {
+    box-shadow: 0 10px 30px rgba(246, 114, 17, 0.15);
+}
+
+/* =========================================
    3. RESETEO BASE Y TIPOGRAFÍA
 ========================================= */
 * {
@@ -189,37 +208,116 @@ section h2 {
     margin-bottom: 60px;
 }
 
-.grid-galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
+/* Envoltura del carrusel para posicionar las flechas */
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-figure {
+/* Transformamos el grid en un slider horizontal */
+.grid-galeria {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    /* AJUSTE AQUÍ: Agregamos padding arriba y abajo */
+    padding: 20px 10px; 
+    width: 100%;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+    /* Aseguramos que nada se corte hacia afuera */
+    align-items: stretch; 
+}
+
+.grid-galeria::-webkit-scrollbar {
+    display: none; 
+}
+
+/* Cada tarjeta del carrusel */
+.grid-galeria figure {
+    flex: 0 0 calc(33.333% - 20px); /* Muestra 3 imágenes a la vez en PC */
+    min-width: 300px;
+    scroll-snap-align: center;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 12px;
     position: relative;
     background-color: var(--color-fondo-claro);
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
-figure:hover {
+/* Le damos a las tarjetas de servicio el mismo comportamiento de slider que a las fotos */
+.grid-galeria .categoria-card {
+    flex: 0 0 calc(33.333% - 20px); 
+    min-width: 300px;
+    scroll-snap-align: center;
+}
+
+/* Efecto hover fusionado */
+.grid-galeria figure:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-figure img {
+/* Imagen dentro del carrusel */
+.grid-galeria figure img {
     width: 100%;
     height: 450px;
     object-fit: cover;
 }
 
-figcaption {
+/* Texto debajo de la imagen */
+.grid-galeria figcaption {
     text-align: left;
     padding: 20px 25px;
     font-weight: 600;
     color: var(--color-texto-titulo);
+}
+
+/* =========================================
+   ESTILOS DE LAS FLECHAS
+========================================= */
+.slider-arrow {
+    background-color: var(--color-mapache-oscuro);
+    color: var(--color-fondo-claro);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    top: 50%;
+    transform: translateY(-50%); /* Esto las centra perfectamente al eje horizontal */
+}
+
+/* Y para el efecto hover, mantén el centro */
+.slider-arrow:hover {
+    background-color: var(--color-fondo-naranja);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-arrow { left: -25px; } 
+.next-arrow { right: -25px; } 
+
+/* =========================================
+   ARREGLO DEL MODAL DE IMAGEN COMPLETA
+========================================= */
+#img-ampliada {
+    max-width: 90vw; 
+    max-height: 85vh; 
+    object-fit: contain; /* Encaje perfecto */
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
 }
 
 /* =========================================
@@ -289,7 +387,8 @@ figcaption {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    /* AJUSTE AQUÍ: Eliminamos height: 100% si lo tenías y usamos min-height */
+    min-height: 350px; 
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
@@ -382,7 +481,7 @@ body.dark-mode .btn-whatsapp:hover {
 
 /* Caja del Modal de Precios (Consolidada y Limpia) */
 .modal-caja-blanca {
-    background-color: white;
+    background-color: var(--color-fondo-claro); /* ¡MAGIA! Antes decía 'white' */
     width: 90%;
     max-width: 800px;
     max-height: 80vh;
@@ -420,7 +519,15 @@ body.dark-mode .btn-whatsapp:hover {
 }
 
 .cerrar-precios {
-    color: #333; /* Para que se vea en el fondo blanco de los precios */
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--color-texto-titulo); /* ¡MAGIA! Antes decía '#333' */
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1;
 }
 
 .cerrar-modal:hover, .cerrar-precios:hover {
@@ -551,10 +658,114 @@ footer {
 }
 
 /* =========================================
+   ESTILOS DEL BUSCADOR INTELIGENTE
+========================================= */
+.buscador-container {
+    position: relative;
+    margin-left: 20px;
+}
+
+#buscador-servicios {
+    padding: 10px 20px;
+    border-radius: 50px; /* Redondo y moderno */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.15); /* Efecto cristal */
+    color: #ffffff;
+    outline: none;
+    font-family: var(--fuente-base);
+    font-size: 0.9rem;
+    width: 250px;
+    transition: all 0.3s ease;
+}
+
+#buscador-servicios::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Al hacer clic en el buscador */
+#buscador-servicios:focus {
+    background-color: var(--color-fondo-claro);
+    color: var(--color-texto-base);
+    width: 280px; /* Se alarga un poquito al escribir */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* El cuadro blanco que cae con los resultados */
+.dropdown-resultados {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-fondo-claro);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    list-style: none;
+    padding: 5px 0;
+    max-height: 250px;
+    overflow-y: auto;
+    display: none; /* Oculto hasta que escriban */
+    z-index: 2000;
+}
+
+.dropdown-resultados li {
+    padding: 12px 20px;
+    color: var(--color-texto-base);
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-resultados li:hover {
+    background-color: rgba(246, 114, 17, 0.1);
+    color: var(--color-acento);
+}
+
+/* Mensaje cuando no existe el servicio */
+.dropdown-resultados li.no-resultado {
+    cursor: default;
+    color: #999;
+    font-style: italic;
+}
+.dropdown-resultados li.no-resultado:hover {
+    background-color: transparent;
+    color: #999;
+}
+
+/* 🌙 ADAPTACIÓN AL MODO OSCURO */
+body.dark-mode .dropdown-resultados {
+    background-color: #27272a;
+}
+body.dark-mode .dropdown-resultados li {
+    color: var(--color-texto-base);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* 📱 ADAPTACIÓN A MÓVILES */
+@media screen and (max-width: 768px) {
+    .buscador-container {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 10px;
+    }
+    #buscador-servicios {
+        width: 100%;
+    }
+    #buscador-servicios:focus {
+        width: 100%;
+    }
+}
+
+/* =========================================
    13. DISEÑO RESPONSIVO (SIEMPRE AL FINAL)
 ========================================= */
 @media screen and (max-width: 768px) {
     
+    /* Ajuste para que las tarjetas de servicios ocupen toda la pantalla en celular */
+    .grid-galeria .categoria-card {
+        flex: 0 0 100%; 
+    }
+
     header { padding: 10px 15px; }
     nav { flex-direction: column; gap: 15px; }
     .logo-header img { height: 50px; }
@@ -607,4 +818,11 @@ footer {
         font-size: 1rem;
         width: max-content;
     }
+
+    /* En móviles, mostramos de 1 en 1 y metemos las flechas al canvas */
+    .grid-galeria figure {
+        flex: 0 0 100%; 
+    }
+    .prev-arrow { left: 10px; }
+    .next-arrow { right: 10px; }
 }

@@ -108,6 +108,92 @@ function iniciarRuleta() {
 }
 
 // =========================================
+// LÓGICA DEL BUSCADOR INTELIGENTE
+// =========================================
+function inicializarBuscador() {
+    const inputBuscador = document.getElementById('buscador-servicios');
+    const cajaResultados = document.getElementById('resultados-busqueda');
+
+    if (!inputBuscador || !cajaResultados) return;
+
+    // Detectar cada vez que el usuario teclea algo
+    inputBuscador.addEventListener('input', (e) => {
+        const textoBuscado = e.target.value.toLowerCase().trim();
+        cajaResultados.innerHTML = ''; // Limpiar resultados anteriores
+
+        if (textoBuscado.length === 0) {
+            cajaResultados.style.display = 'none';
+            return;
+        }
+
+        // Magia: Buscar en nuestra base de datos coincidencias en título o descripción
+        const coincidencias = categoriasServicios.filter(cat => 
+            cat.titulo.toLowerCase().includes(textoBuscado) || 
+            cat.descripcion.toLowerCase().includes(textoBuscado)
+        );
+
+        if (coincidencias.length > 0) {
+            // Si hay coincidencias, dibujar los resultados
+            coincidencias.forEach(cat => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${cat.titulo}</strong>`; // Lo ponemos en negritas
+                li.addEventListener('click', () => {
+                    // Al hacer clic, enviamos al usuario a la página de servicios con una variable en la URL
+                    window.location.href = `servicios.html?paquete=${cat.id}`;
+                });
+                cajaResultados.appendChild(li);
+            });
+        } else {
+            // Si no hay nada, mostramos el mensaje de error
+            const li = document.createElement('li');
+            li.textContent = 'No contamos con este servicio 😥';
+            li.className = 'no-resultado';
+            cajaResultados.appendChild(li);
+        }
+
+        cajaResultados.style.display = 'block';
+    });
+
+    // Cerrar la cajita si el usuario hace clic en otra parte de la pantalla
+    document.addEventListener('click', (e) => {
+        if (!inputBuscador.contains(e.target) && !cajaResultados.contains(e.target)) {
+            cajaResultados.style.display = 'none';
+        }
+    });
+}
+
+// =========================================
+// ENRUTAMIENTO AUTOMÁTICO AL PAQUETE
+// =========================================
+function buscarPaqueteDesdeURL() {
+    // Leemos la URL buscando el código (ej. ?paquete=bodas)
+    const parametrosURL = new URLSearchParams(window.location.search);
+    const paqueteBuscado = parametrosURL.get('paquete');
+
+    if (paqueteBuscado) {
+        // Buscamos la tarjeta en la pantalla
+        const tarjetaEncontrada = document.querySelector(`.categoria-card[data-categoria="${paqueteBuscado}"]`);
+        
+        if (tarjetaEncontrada) {
+            // 1. Deslizamos la pantalla automáticamente hasta la tarjeta
+            tarjetaEncontrada.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // 2. Le damos un destello naranja temporal para decirle al usuario "¡Es este!"
+            tarjetaEncontrada.style.boxShadow = '0 0 30px var(--color-acento)';
+            tarjetaEncontrada.style.borderColor = 'var(--color-acento)';
+            
+            setTimeout(() => {
+                tarjetaEncontrada.style.boxShadow = '';
+                tarjetaEncontrada.style.borderColor = '';
+            }, 3000);
+
+            // ¡Listo! Eliminamos el paso 3 que abría la ventana modal.
+            // Ahora el usuario se queda viendo la tarjeta iluminada y decide si dar clic.
+        }
+    }
+}
+
+// =========================================
 // 4. INICIALIZACIÓN GLOBAL (EVENTOS)
 // =========================================
 
@@ -115,6 +201,9 @@ function iniciarRuleta() {
 document.addEventListener('DOMContentLoaded', () => {
     iniciarRuleta();
     renderizarCategorias();
+    inicializarCarrusel();
+    inicializarBuscador();
+    buscarPaqueteDesdeURL();
 });
 
 // Eventos para cerrar Modales (Precios)
@@ -212,4 +301,33 @@ if (btnTema) {
         // Guardamos su decisión en la memoria de su navegador
         localStorage.setItem('mapard-tema', !estaOscuro ? 'dark' : 'light');
     });
+}
+
+// =========================================
+// 6.LÓGICA DEL CARRUSEL DE GALERÍA
+// =========================================
+function inicializarCarrusel() {
+    // 1. Busca el slider de la galería (Index) O el de las categorías (Servicios)
+    const slider = document.getElementById('slider-galeria') || document.getElementById('grid-categorias');
+    const btnPrev = document.getElementById('btn-prev-galeria');
+    const btnNext = document.getElementById('btn-next-galeria');
+
+    if (slider && btnPrev && btnNext) {
+        btnNext.addEventListener('click', () => {
+            // 2. Busca qué hay adentro: ¿una foto (<figure>) o una tarjeta (.categoria-card)?
+            const item = slider.querySelector('figure') || slider.querySelector('.categoria-card');
+            if(!item) return; 
+            
+            const anchoTarjeta = item.clientWidth + 30; // 30 es el espacio (gap)
+            slider.scrollBy({ left: anchoTarjeta, behavior: 'smooth' });
+        });
+
+        btnPrev.addEventListener('click', () => {
+            const item = slider.querySelector('figure') || slider.querySelector('.categoria-card');
+            if(!item) return;
+            
+            const anchoTarjeta = item.clientWidth + 30;
+            slider.scrollBy({ left: -anchoTarjeta, behavior: 'smooth' });
+        });
+    }
 }
