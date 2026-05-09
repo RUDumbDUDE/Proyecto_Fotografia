@@ -304,30 +304,73 @@ if (btnTema) {
 }
 
 // =========================================
-// 6.LÓGICA DEL CARRUSEL DE GALERÍA
+// 6.LÓGICA DEL CARRUSEL
 // =========================================
 function inicializarCarrusel() {
-    // 1. Busca el slider de la galería (Index) O el de las categorías (Servicios)
     const slider = document.getElementById('slider-galeria') || document.getElementById('grid-categorias');
     const btnPrev = document.getElementById('btn-prev-galeria');
     const btnNext = document.getElementById('btn-next-galeria');
+    
+    // Seguro para evitar bugs si el usuario hace muchos clics rápidos
+    let enMovimiento = false; 
 
     if (slider && btnPrev && btnNext) {
+        
+        // FLECHA DERECHA (Siguiente)
         btnNext.addEventListener('click', () => {
-            // 2. Busca qué hay adentro: ¿una foto (<figure>) o una tarjeta (.categoria-card)?
-            const item = slider.querySelector('figure') || slider.querySelector('.categoria-card');
+            if (enMovimiento) return; 
+            enMovimiento = true;
+
+            const item = slider.firstElementChild;
             if(!item) return; 
-            
-            const anchoTarjeta = item.clientWidth + 30; // 30 es el espacio (gap)
+            const anchoTarjeta = item.clientWidth + 30; // 30 es el gap
+
+            // 1. Deslizamos suavemente hacia la derecha
             slider.scrollBy({ left: anchoTarjeta, behavior: 'smooth' });
+
+            // 2. Esperamos a que termine la animación (aprox 400ms)
+            setTimeout(() => {
+                // Apagamos el deslizamiento suave un milisegundo
+                slider.style.scrollBehavior = 'auto'; 
+                
+                // TRUCO: Movemos el primer elemento hasta el final de la fila
+                slider.appendChild(slider.firstElementChild); 
+                
+                // Ajustamos la cámara para que el usuario no note el movimiento
+                slider.scrollLeft -= anchoTarjeta; 
+                
+                // Volvemos a encender el deslizamiento suave
+                slider.style.scrollBehavior = 'smooth'; 
+                enMovimiento = false;
+            }, 400); 
         });
 
+        // FLECHA IZQUIERDA (Atrás)
         btnPrev.addEventListener('click', () => {
-            const item = slider.querySelector('figure') || slider.querySelector('.categoria-card');
+            if (enMovimiento) return;
+            enMovimiento = true;
+
+            const item = slider.firstElementChild;
             if(!item) return;
-            
             const anchoTarjeta = item.clientWidth + 30;
-            slider.scrollBy({ left: -anchoTarjeta, behavior: 'smooth' });
+
+            // 1. TRUCO: Movemos el último elemento al principio INVISIBLEMENTE
+            slider.style.scrollBehavior = 'auto';
+            slider.prepend(slider.lastElementChild);
+            
+            // Ajustamos la cámara para contrarrestar el movimiento
+            slider.scrollLeft += anchoTarjeta; 
+
+            // 2. Le damos al navegador 10 milisegundos para asimilar el cambio y luego deslizamos
+            setTimeout(() => {
+                slider.style.scrollBehavior = 'smooth';
+                slider.scrollBy({ left: -anchoTarjeta, behavior: 'smooth' });
+                
+                // Quitamos el seguro cuando termine la animación
+                setTimeout(() => {
+                    enMovimiento = false;
+                }, 400);
+            }, 10); 
         });
     }
 }
