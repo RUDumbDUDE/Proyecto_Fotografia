@@ -839,20 +839,24 @@ body.dark-mode .dropdown-resultados li {
 /* =========================================
    14.ESTILOS DEL SPLASH SCREEN (PAINT SPILL)
 ========================================= */
+/* =========================================
+   14. ESTILOS DEL SPLASH SCREEN (FIX MÓVIL)
+========================================= */
 #splash-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #f67211;
+    /* Forzamos el naranja y evitamos que el móvil lo cambie */
+    background-color: #f67211 !important; 
+    color-scheme: light; /* Indica al navegador que ignore el dark mode aquí */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 15000;
     overflow: hidden;
     transition: opacity 0.8s ease, visibility 0.8s ease;
-    /* Avisamos al navegador qué va a cambiar para que prepare memoria */
     will-change: opacity, visibility; 
 }
 
@@ -861,7 +865,6 @@ body.dark-mode .dropdown-resultados li {
     height: 90vh;
     object-fit: contain;
     z-index: 2;
-    /* Forzamos el uso de la tarjeta gráfica (GPU) */
     will-change: transform, opacity; 
     transform: translateZ(0); 
     animation: zoomLogo 1.5s ease-out forwards;
@@ -871,17 +874,27 @@ body.dark-mode .dropdown-resultados li {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* Usamos vmax para garantizar que la base cubra cualquier pantalla */
     width: 10vmax; 
     height: 10vmax;
-    background-color: var(--color-fondo-naranja);
-    border-radius: 50%; /* Se queda como círculo siempre, no lo animamos */
-    /* El transform 3D obliga a usar aceleración por hardware */
+    /* Usamos el HEX directo para evitar errores de variables en móvil */
+    background-color: #f67211 !important; 
+    border-radius: 50%;
     transform: translate3d(-50%, -50%, 0) scale(0); 
     z-index: 1;
     pointer-events: none;
     will-change: transform;
 }
+
+/* =========================================
+   AJUSTE PARA EL MODO OSCURO (RAÍZ)
+========================================= */
+/* Aseguramos que nada sobreescriba el naranja durante el splash */
+.dark-mode #splash-screen,
+.dark-mode .paint-spill {
+    background-color: #f67211 !important;
+}
+
+/* ... (Tus animaciones @keyframes se quedan igual) ... */
 
 /* =========================================
    ANIMACIONES A 60 FPS
