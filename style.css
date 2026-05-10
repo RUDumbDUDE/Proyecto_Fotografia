@@ -16,21 +16,22 @@
 }
 
 /* =========================================
-   2.VARIABLES DE MODO OSCURO
+    2. VARIABLES DE MODO OSCURO (RAÍZ)
 ========================================= */
-body.dark-mode {
-    /* Cambiamos el blanco por un gris carbón súper elegante */
+.dark-mode {
+    /* Fondo gris carbón elegante */
     --color-fondo-claro: #18181b; 
-    /* El texto de lectura se vuelve gris claro para no cansar la vista */
+    /* Texto base en gris claro */
     --color-texto-base: #d4d4d8; 
-    /* Los títulos resaltan en blanco puro */
+    /* Títulos en blanco puro */
     --color-texto-titulo: #ffffff; 
-    /* Hacemos el naranja un 10% más oscuro para que no lastime en la noche */
+    /* Naranja ajustado para confort visual */
     --color-fondo-naranja: #db6209; 
-    --color-mapache-oscuro: #ffffff; /* Ajustamos el antifaz a blanco para dar contraste */
+    /* Antifaz/Detalles en blanco para contraste */
+    --color-mapache-oscuro: #ffffff; 
 }
 
-/* Diseño del Botón en el Menú */
+/* Diseño del Botón en el Menú (Independiente del tema) */
 .btn-tema {
     background: none;
     border: none;
@@ -49,21 +50,22 @@ body.dark-mode {
 }
 
 /* =========================================
-   AJUSTES ESPECÍFICOS: MODAL EN MODO OSCURO
+    AJUSTES ESPECÍFICOS: MODAL EN MODO OSCURO
 ========================================= */
-/* Hacemos que las tarjetas de precios resalten del fondo del modal */
-body.dark-mode .paquete {
-    background-color: #27272a; /* Un gris sutilmente más claro que el fondo */
-    border-color: #3f3f46; /* Borde gris oscuro para definir la tarjeta */
+
+/* Elevación de las tarjetas de precios sobre el fondo oscuro */
+.dark-mode .paquete {
+    background-color: #27272a; 
+    border-color: #3f3f46; 
 }
 
-/* Aclaramos las líneas separadoras de la lista de detalles */
-body.dark-mode .paquete li {
+/* Líneas separadoras sutiles */
+.dark-mode .paquete li {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
-/* Aseguramos que la sombra del paquete premium luzca bien en la oscuridad */
-body.dark-mode .paquete.premium {
+/* Resplandor suave para el paquete premium en la oscuridad */
+.dark-mode .paquete.premium {
     box-shadow: 0 10px 30px rgba(246, 114, 17, 0.15);
 }
 
