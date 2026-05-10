@@ -199,6 +199,7 @@ function buscarPaqueteDesdeURL() {
 
 // Ejecutar funciones principales cuando el HTML esté listo
 document.addEventListener('DOMContentLoaded', () => {
+    inicializarTema();
     iniciarRuleta();
     renderizarCategorias();
     inicializarCarrusel();

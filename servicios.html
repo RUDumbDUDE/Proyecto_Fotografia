@@ -8,6 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <script>
+    // Este pequeño script se ejecuta ANTES de que se dibuje la página
+    if (localStorage.getItem('mapard-tema') === 'dark' || (!localStorage.getItem('mapard-tema') && new Date().getHours() >= 19)) {
+        document.documentElement.classList.add('dark-mode');
+    }
+</script>
 </head>
 <body>
 
@@ -20,7 +27,6 @@
             <ul>
                 <li><a href="index.html#inicio">Inicio</a></li>
                 <li><a href="index.html#galeria">Colecciones</a></li>
-                <li><a href="servicios.html">Mapache Packs</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <!-- NUEVO: Botón de Tema -->
                 <li>
