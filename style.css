@@ -437,30 +437,37 @@ section h2 {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: var(--color-mapache-oscuro);
-    color: #ffffff;
+    background-color: var(--color-mapache-oscuro); /* Negro en modo claro */
+    color: #ffffff !important; /* Forzamos texto blanco siempre */
     padding: 15px 25px;
     border-radius: 50px;
     font-weight: bold;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     z-index: 1000;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-whatsapp:hover {
     background-color: #333333;
-    color: #ffffff;
+    transform: scale(1.05);
 }
 
-body.dark-mode .btn-whatsapp {
-    background-color: var(--color-fondo-naranja); /* Toma el color naranja del Header */
-    color: #ffffff; /* Letras blancas */
-    box-shadow: 0 4px 15px rgba(246, 114, 17, 0.4); /* Sombreado naranja */
+/* =========================================
+   WHATSAPP EN MODO OSCURO (CORRECCIÓN)
+========================================= */
+/* Usamos .dark-mode que viene desde el html */
+.dark-mode .btn-whatsapp {
+    background-color: var(--color-fondo-naranja) !important; /* Naranja en modo oscuro */
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(219, 98, 9, 0.4); /* Sombra naranja */
 }
 
-body.dark-mode .btn-whatsapp:hover {
-    background-color: #ffffff; /* Al pasar el mouse se invierte a blanco */
-    color: var(--color-fondo-naranja);
+.dark-mode .btn-whatsapp:hover {
+    background-color: #ffffff !important;
+    color: var(--color-fondo-naranja) !important;
 }
 
 /* =========================================
