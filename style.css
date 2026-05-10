@@ -914,8 +914,3 @@ body.dark-mode .dropdown-resultados li {
     opacity: 0;
     visibility: hidden;
 }
-
-/* Adaptación a modo oscuro */
-.dark-mode #splash-screen {
-    background-color: #18181b;
-}
