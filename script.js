@@ -199,6 +199,7 @@ function buscarPaqueteDesdeURL() {
 
 // Ejecutar funciones principales cuando el HTML esté listo
 document.addEventListener('DOMContentLoaded', () => {
+    manejarSplashScreen();
     inicializarTema();
     iniciarRuleta();
     renderizarCategorias();
@@ -365,5 +366,43 @@ function inicializarCarrusel() {
                 }, 400);
             }, 10); 
         });
+    }
+}
+
+// =========================================
+// LÓGICA DEL SPLASH SCREEN (PRIMERA VISTA)
+// =========================================
+function manejarSplashScreen() {
+    const splash = document.getElementById('splash-screen');
+    if (!splash) return;
+
+    const yaVisto = sessionStorage.getItem('mapard-splash-visto');
+
+    if (yaVisto) {
+        splash.style.display = 'none';
+    } else {
+        // --- INICIO DE LA COREOGRAFÍA ---
+        
+        // 1. El logo se queda solo por 1.5 segundos
+        setTimeout(() => {
+            // 2. Lanzamos el derrame de pintura (Paint Spill)
+            splash.classList.add('splash-out');
+            
+            // 3. Esperamos a que la pintura cubra casi toda la pantalla (aprox 1s)
+            // y lanzamos el FADE OUT final del contenedor completo
+            setTimeout(() => {
+                splash.classList.add('splash-hidden');
+                
+                // Marcamos como visto para que no se repita en esta sesión
+                sessionStorage.setItem('mapard-splash-visto', 'true');
+
+                // 4. Finalmente, quitamos el elemento del mapa para liberar memoria
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 800); // Este tiempo debe coincidir con el transition del CSS
+                
+            }, 1000); 
+            
+        }, 1500); 
     }
 }

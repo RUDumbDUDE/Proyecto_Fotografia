@@ -835,3 +835,87 @@ body.dark-mode .dropdown-resultados li {
     .prev-arrow { left: 10px; }
     .next-arrow { right: 10px; }
 }
+
+/* =========================================
+   14.ESTILOS DEL SPLASH SCREEN (PAINT SPILL)
+========================================= */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f67211;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 15000;
+    overflow: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    /* Avisamos al navegador qué va a cambiar para que prepare memoria */
+    will-change: opacity, visibility; 
+}
+
+.splash-logo {
+    width: 90vw;
+    height: 90vh;
+    object-fit: contain;
+    z-index: 2;
+    /* Forzamos el uso de la tarjeta gráfica (GPU) */
+    will-change: transform, opacity; 
+    transform: translateZ(0); 
+    animation: zoomLogo 1.5s ease-out forwards;
+}
+
+.paint-spill {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Usamos vmax para garantizar que la base cubra cualquier pantalla */
+    width: 10vmax; 
+    height: 10vmax;
+    background-color: var(--color-fondo-naranja);
+    border-radius: 50%; /* Se queda como círculo siempre, no lo animamos */
+    /* El transform 3D obliga a usar aceleración por hardware */
+    transform: translate3d(-50%, -50%, 0) scale(0); 
+    z-index: 1;
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* =========================================
+   ANIMACIONES A 60 FPS
+========================================= */
+@keyframes zoomLogo {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.splash-out .paint-spill {
+    /* Usamos una curva bezier súper fluida que arranca rápido y frena suave */
+    animation: spillEffect 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+}
+
+.splash-out .splash-logo {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes spillEffect {
+    0% { transform: translate3d(-50%, -50%, 0) scale(0); }
+    /* Escalamos masivamente la gota para que cubra las esquinas de la pantalla, sin recalcular bordes */
+    100% { transform: translate3d(-50%, -50%, 0) scale(30); } 
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: scale(1.1); }
+}
+
+.splash-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Adaptación a modo oscuro */
+.dark-mode #splash-screen {
+    background-color: #18181b;
+}
