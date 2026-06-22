@@ -1,7 +1,7 @@
 // =========================================
 // 1. SELECTORES GLOBALES
 // =========================================
-const imagenesGaleria = document.querySelectorAll('.grid-galeria img'); 
+const imagenesGaleria = document.querySelectorAll('.grid-galeria img');
 const modalImagen = document.getElementById('modal-imagen');
 const imgAmpliada = document.getElementById('img-ampliada');
 const botonCerrarGaleria = document.querySelector('.cerrar-modal');
@@ -58,11 +58,11 @@ function abrirModalPaquetes(id, titulo) {
 
     tituloModal.textContent = 'Paquetes para ' + titulo;
     contenedorPaquetesDinamico.innerHTML = '';
-    
+
     const paquetes = obtenerPaquetes(id);
-    
+
     paquetes.forEach((p, i) => {
-        const clasePremium = i === 1 ? 'premium' : ''; 
+        const clasePremium = i === 1 ? 'premium' : '';
         let detallesHTML = p.detalles.map(d => `<li>${d}</li>`).join('');
 
         contenedorPaquetesDinamico.innerHTML += `
@@ -104,7 +104,7 @@ function iniciarRuleta() {
         slides[indiceActual].classList.remove('active');
         indiceActual = (indiceActual + 1) % slides.length;
         slides[indiceActual].classList.add('active');
-    }, 4000); 
+    }, 4000);
 }
 
 // =========================================
@@ -116,42 +116,46 @@ function inicializarBuscador() {
 
     if (!inputBuscador || !cajaResultados) return;
 
-    // Detectar cada vez que el usuario teclea algo
+    // Detectar cada vez que el usuario teclea algo (con Debounce)
+    let timeoutBuscador;
     inputBuscador.addEventListener('input', (e) => {
-        const textoBuscado = e.target.value.toLowerCase().trim();
-        cajaResultados.innerHTML = ''; // Limpiar resultados anteriores
+        clearTimeout(timeoutBuscador);
+        timeoutBuscador = setTimeout(() => {
+            const textoBuscado = e.target.value.toLowerCase().trim();
+            cajaResultados.innerHTML = ''; // Limpiar resultados anteriores
 
-        if (textoBuscado.length === 0) {
-            cajaResultados.style.display = 'none';
-            return;
-        }
+            if (textoBuscado.length === 0) {
+                cajaResultados.style.display = 'none';
+                return;
+            }
 
-        // Magia: Buscar en nuestra base de datos coincidencias en título o descripción
-        const coincidencias = categoriasServicios.filter(cat => 
-            cat.titulo.toLowerCase().includes(textoBuscado) || 
-            cat.descripcion.toLowerCase().includes(textoBuscado)
-        );
+            // Magia: Buscar en nuestra base de datos coincidencias en título o descripción
+            const coincidencias = categoriasServicios.filter(cat =>
+                cat.titulo.toLowerCase().includes(textoBuscado) ||
+                cat.descripcion.toLowerCase().includes(textoBuscado)
+            );
 
-        if (coincidencias.length > 0) {
-            // Si hay coincidencias, dibujar los resultados
-            coincidencias.forEach(cat => {
-                const li = document.createElement('li');
-                li.innerHTML = `<strong>${cat.titulo}</strong>`; // Lo ponemos en negritas
-                li.addEventListener('click', () => {
-                    // Al hacer clic, enviamos al usuario a la página de servicios con una variable en la URL
-                    window.location.href = `servicios.html?paquete=${cat.id}`;
+            if (coincidencias.length > 0) {
+                // Si hay coincidencias, dibujar los resultados
+                coincidencias.forEach(cat => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${cat.titulo}</strong>`; // Lo ponemos en negritas
+                    li.addEventListener('click', () => {
+                        // Al hacer clic, enviamos al usuario a la página de servicios con una variable en la URL
+                        window.location.href = `servicios.html?paquete=${cat.id}`;
+                    });
+                    cajaResultados.appendChild(li);
                 });
+            } else {
+                // Si no hay nada, mostramos el mensaje de error
+                const li = document.createElement('li');
+                li.textContent = 'No contamos con este servicio 😥';
+                li.className = 'no-resultado';
                 cajaResultados.appendChild(li);
-            });
-        } else {
-            // Si no hay nada, mostramos el mensaje de error
-            const li = document.createElement('li');
-            li.textContent = 'No contamos con este servicio 😥';
-            li.className = 'no-resultado';
-            cajaResultados.appendChild(li);
-        }
+            }
 
-        cajaResultados.style.display = 'block';
+            cajaResultados.style.display = 'block';
+        }, 300); // 300ms debounce
     });
 
     // Cerrar la cajita si el usuario hace clic en otra parte de la pantalla
@@ -173,15 +177,15 @@ function buscarPaqueteDesdeURL() {
     if (paqueteBuscado) {
         // Buscamos la tarjeta en la pantalla
         const tarjetaEncontrada = document.querySelector(`.categoria-card[data-categoria="${paqueteBuscado}"]`);
-        
+
         if (tarjetaEncontrada) {
             // 1. Deslizamos la pantalla automáticamente hasta la tarjeta
             tarjetaEncontrada.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
+
             // 2. Le damos un destello naranja temporal para decirle al usuario "¡Es este!"
             tarjetaEncontrada.style.boxShadow = '0 0 30px var(--color-acento)';
             tarjetaEncontrada.style.borderColor = 'var(--color-acento)';
-            
+
             setTimeout(() => {
                 tarjetaEncontrada.style.boxShadow = '';
                 tarjetaEncontrada.style.borderColor = '';
@@ -218,16 +222,16 @@ document.addEventListener('DOMContentLoaded', () => {
 // Eventos para Galería (Abrir y Cerrar)
 if (modalImagen && imgAmpliada) {
     imagenesGaleria.forEach(img => img.addEventListener('click', () => {
-        modalImagen.style.display = 'flex'; 
-        imgAmpliada.src = img.src; 
+        modalImagen.style.display = 'flex';
+        imgAmpliada.src = img.src;
     }));
 }
 
 if (botonCerrarGaleria && modalImagen) {
     botonCerrarGaleria.addEventListener('click', () => {
-        modalImagen.style.display = 'none'; 
+        modalImagen.style.display = 'none';
     });
-    
+
     modalImagen.addEventListener('click', (e) => {
         if (e.target === modalImagen) modalImagen.style.display = 'none';
     });
@@ -241,7 +245,7 @@ if (btnWhatsapp && footer) {
 
         if (scrollAbajo > inicioFooter) {
             btnWhatsapp.style.position = 'absolute';
-            btnWhatsapp.style.bottom = (footer.offsetHeight + 20) + 'px'; 
+            btnWhatsapp.style.bottom = (footer.offsetHeight + 20) + 'px';
         } else {
             btnWhatsapp.style.position = 'fixed';
             btnWhatsapp.style.bottom = window.innerWidth <= 768 ? '15px' : '30px';
@@ -257,18 +261,18 @@ const iconoLuna = document.getElementById('icono-luna');
 const iconoSol = document.getElementById('icono-sol');
 
 // Seleccionamos la RAÍZ (html) en lugar del body para coincidir con el script del head
-const raiz = document.documentElement; 
+const raiz = document.documentElement;
 
 function aplicarTema(esOscuro) {
     if (esOscuro) {
         raiz.classList.add('dark-mode'); // Cambiado de body a raiz
-        if(iconoLuna && iconoSol) {
+        if (iconoLuna && iconoSol) {
             iconoLuna.style.display = 'none';
             iconoSol.style.display = 'block';
         }
     } else {
         raiz.classList.remove('dark-mode'); // Cambiado de body a raiz
-        if(iconoLuna && iconoSol) {
+        if (iconoLuna && iconoSol) {
             iconoLuna.style.display = 'block';
             iconoSol.style.display = 'none';
         }
@@ -304,67 +308,26 @@ function inicializarCarrusel() {
     const slider = document.getElementById('slider-galeria') || document.getElementById('grid-categorias');
     const btnPrev = document.getElementById('btn-prev-galeria');
     const btnNext = document.getElementById('btn-next-galeria');
-    
+
     // Seguro para evitar bugs si el usuario hace muchos clics rápidos
-    let enMovimiento = false; 
+    let enMovimiento = false;
 
     if (slider && btnPrev && btnNext) {
-        
+
         // FLECHA DERECHA (Siguiente)
         btnNext.addEventListener('click', () => {
-            if (enMovimiento) return; 
-            enMovimiento = true;
-
             const item = slider.firstElementChild;
-            if(!item) return; 
+            if (!item) return;
             const anchoTarjeta = item.clientWidth + 30; // 30 es el gap
-
-            // 1. Deslizamos suavemente hacia la derecha
             slider.scrollBy({ left: anchoTarjeta, behavior: 'smooth' });
-
-            // 2. Esperamos a que termine la animación (aprox 400ms)
-            setTimeout(() => {
-                // Apagamos el deslizamiento suave un milisegundo
-                slider.style.scrollBehavior = 'auto'; 
-                
-                // TRUCO: Movemos el primer elemento hasta el final de la fila
-                slider.appendChild(slider.firstElementChild); 
-                
-                // Ajustamos la cámara para que el usuario no note el movimiento
-                slider.scrollLeft -= anchoTarjeta; 
-                
-                // Volvemos a encender el deslizamiento suave
-                slider.style.scrollBehavior = 'smooth'; 
-                enMovimiento = false;
-            }, 400); 
         });
 
         // FLECHA IZQUIERDA (Atrás)
         btnPrev.addEventListener('click', () => {
-            if (enMovimiento) return;
-            enMovimiento = true;
-
             const item = slider.firstElementChild;
-            if(!item) return;
+            if (!item) return;
             const anchoTarjeta = item.clientWidth + 30;
-
-            // 1. TRUCO: Movemos el último elemento al principio INVISIBLEMENTE
-            slider.style.scrollBehavior = 'auto';
-            slider.prepend(slider.lastElementChild);
-            
-            // Ajustamos la cámara para contrarrestar el movimiento
-            slider.scrollLeft += anchoTarjeta; 
-
-            // 2. Le damos al navegador 10 milisegundos para asimilar el cambio y luego deslizamos
-            setTimeout(() => {
-                slider.style.scrollBehavior = 'smooth';
-                slider.scrollBy({ left: -anchoTarjeta, behavior: 'smooth' });
-                
-                // Quitamos el seguro cuando termine la animación
-                setTimeout(() => {
-                    enMovimiento = false;
-                }, 400);
-            }, 10); 
+            slider.scrollBy({ left: -anchoTarjeta, behavior: 'smooth' });
         });
     }
 }
@@ -382,17 +345,17 @@ function manejarSplashScreen() {
         splash.style.display = 'none';
     } else {
         // --- INICIO DE LA COREOGRAFÍA ---
-        
+
         // 1. El logo se queda solo por 1.5 segundos
         setTimeout(() => {
             // 2. Lanzamos el derrame de pintura (Paint Spill)
             splash.classList.add('splash-out');
-            
+
             // 3. Esperamos a que la pintura cubra casi toda la pantalla (aprox 1s)
             // y lanzamos el FADE OUT final del contenedor completo
             setTimeout(() => {
                 splash.classList.add('splash-hidden');
-                
+
                 // Marcamos como visto para que no se repita en esta sesión
                 sessionStorage.setItem('mapard-splash-visto', 'true');
 
@@ -400,9 +363,9 @@ function manejarSplashScreen() {
                 setTimeout(() => {
                     splash.style.display = 'none';
                 }, 800); // Este tiempo debe coincidir con el transition del CSS
-                
-            }, 1000); 
-            
-        }, 1500); 
+
+            }, 1000);
+
+        }, 1500);
     }
 }

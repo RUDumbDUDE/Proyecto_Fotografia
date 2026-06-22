@@ -2,40 +2,35 @@
    1. VARIABLES DE MARCA MAPACHE STUDIO
 ========================================= */
 :root {
-    --color-fondo-naranja: #f67211;
-    --color-fondo-claro: #ffffff;
-    --color-texto-base: #333333;
-    --color-texto-titulo: #1d1d1f;
-    --color-acento: #f67211;
-    --color-mapache-oscuro: #1d1d1f;
+    --color-fondo-naranja: #f97316;
+    --color-fondo-claro: #f8fafc;
+    --color-texto-base: #334155;
+    --color-texto-titulo: #0f172a;
+    --color-acento: #ea580c;
+    --color-mapache-oscuro: #1e293b;
     --color-mapache-marron: #6c4e34;
 
     --fuente-titulo: 'Poppins', sans-serif;
     --fuente-base: 'Poppins', sans-serif;
-    --fuente-acento: 'Pacifico', cursive;
+    --fuente-acento: 'Playfair Display', serif;
 }
 
 /* =========================================
     2. VARIABLES DE MODO OSCURO (RAÍZ)
 ========================================= */
 .dark-mode {
-    /* Fondo gris carbón elegante */
-    --color-fondo-claro: #18181b; 
-    /* Texto base en gris claro */
-    --color-texto-base: #d4d4d8; 
-    /* Títulos en blanco puro */
-    --color-texto-titulo: #ffffff; 
-    /* Naranja ajustado para confort visual */
-    --color-fondo-naranja: #db6209; 
-    /* Antifaz/Detalles en blanco para contraste */
-    --color-mapache-oscuro: #ffffff; 
+    --color-fondo-claro: #0f172a;
+    --color-texto-base: #cbd5e1;
+    --color-texto-titulo: #f8fafc;
+    --color-fondo-naranja: #c2410c;
+    --color-mapache-oscuro: #f8fafc;
 }
 
 /* Diseño del Botón en el Menú (Independiente del tema) */
 .btn-tema {
     background: none;
     border: none;
-    color: var(--color-fondo-claro);
+    color: #ffffff;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -55,13 +50,13 @@
 
 /* Elevación de las tarjetas de precios sobre el fondo oscuro */
 .dark-mode .paquete {
-    background-color: #27272a; 
-    border-color: #3f3f46; 
+    background-color: #27272a;
+    border-color: #3f3f46;
 }
 
 /* Líneas separadoras sutiles */
 .dark-mode .paquete li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Resplandor suave para el paquete premium en la oscuridad */
@@ -88,7 +83,9 @@ body {
     position: relative;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: var(--fuente-titulo);
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -105,13 +102,22 @@ a {
    4. ENCABEZADO Y NAVEGACIÓN
 ========================================= */
 header {
-    background-color: var(--color-fondo-naranja);
+    background-color: rgba(249, 115, 22, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 15px 40px;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 15px rgba(246, 114, 17, 0.4);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.dark-mode header {
+    background-color: rgba(15, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 nav {
@@ -141,7 +147,7 @@ nav ul {
 nav a {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--color-fondo-claro);
+    color: #ffffff;
     border-bottom: 2px solid transparent;
     padding-bottom: 5px;
     transition: color 0.3s ease, border-bottom-color 0.3s ease;
@@ -160,7 +166,7 @@ main {
    5. SECCIÓN DE INICIO (HERO)
 ========================================= */
 #inicio {
-    height: 90vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -169,29 +175,54 @@ main {
     padding: 0 20px;
     position: relative;
     background-color: transparent;
+    margin-top: -90px;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(249, 115, 22, 0.1) 0%, var(--color-fondo-claro) 70%);
+    z-index: -1;
+    animation: pulseBg 10s infinite alternate ease-in-out;
+}
+
+@keyframes pulseBg {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.hero-content {
+    z-index: 1;
+    margin-top: 90px;
 }
 
 #inicio h1 {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     color: var(--color-texto-titulo);
     margin-bottom: 20px;
     transition: transform 0.3s ease;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 #inicio p {
     font-family: var(--fuente-acento);
-    font-size: 1.5rem;
-    color: var(--color-mapache-marron);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--color-acento);
     margin-bottom: 10px;
 }
 
 #inicio h1:hover {
-    animation: rebote 0.5s ease;
-}
-
-@keyframes rebote {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    transform: scale(1.02);
 }
 
 /* =========================================
@@ -210,6 +241,18 @@ section h2 {
     margin-bottom: 60px;
 }
 
+.encabezado-seccion {
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.subtitulo-seccion {
+    font-family: var(--fuente-acento);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--color-acento);
+}
+
 /* Envoltura del carrusel para posicionar las flechas */
 .carousel-wrapper {
     position: relative;
@@ -225,21 +268,22 @@ section h2 {
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     /* AJUSTE AQUÍ: Agregamos padding arriba y abajo */
-    padding: 20px 10px; 
+    padding: 20px 10px;
     width: 100%;
-    -ms-overflow-style: none;  
-    scrollbar-width: none;  
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     /* Aseguramos que nada se corte hacia afuera */
-    align-items: stretch; 
+    align-items: stretch;
 }
 
 .grid-galeria::-webkit-scrollbar {
-    display: none; 
+    display: none;
 }
 
 /* Cada tarjeta del carrusel */
 .grid-galeria figure {
-    flex: 0 0 calc(33.333% - 20px); /* Muestra 3 imágenes a la vez en PC */
+    flex: 0 0 calc(33.333% - 20px);
+    /* Muestra 3 imágenes a la vez en PC */
     min-width: 300px;
     scroll-snap-align: center;
     overflow: hidden;
@@ -253,7 +297,7 @@ section h2 {
 
 /* Le damos a las tarjetas de servicio el mismo comportamiento de slider que a las fotos */
 .grid-galeria .categoria-card {
-    flex: 0 0 calc(33.333% - 20px); 
+    flex: 0 0 calc(33.333% - 20px);
     min-width: 300px;
     scroll-snap-align: center;
 }
@@ -296,10 +340,11 @@ section h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease, transform 0.3s ease;
     top: 50%;
-    transform: translateY(-50%); /* Esto las centra perfectamente al eje horizontal */
+    transform: translateY(-50%);
+    /* Esto las centra perfectamente al eje horizontal */
 }
 
 /* Y para el efecto hover, mantén el centro */
@@ -308,18 +353,24 @@ section h2 {
     transform: translateY(-50%) scale(1.1);
 }
 
-.prev-arrow { left: -25px; } 
-.next-arrow { right: -25px; } 
+.prev-arrow {
+    left: -25px;
+}
+
+.next-arrow {
+    right: -25px;
+}
 
 /* =========================================
    ARREGLO DEL MODAL DE IMAGEN COMPLETA
 ========================================= */
 #img-ampliada {
-    max-width: 90vw; 
-    max-height: 85vh; 
-    object-fit: contain; /* Encaje perfecto */
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    /* Encaje perfecto */
     border-radius: 10px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
 }
 
 /* =========================================
@@ -390,7 +441,7 @@ section h2 {
     flex-direction: column;
     justify-content: space-between;
     /* AJUSTE AQUÍ: Eliminamos height: 100% si lo tenías y usamos min-height */
-    min-height: 350px; 
+    min-height: 350px;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
@@ -437,8 +488,10 @@ section h2 {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: var(--color-mapache-oscuro); /* Negro en modo claro */
-    color: #ffffff !important; /* Forzamos texto blanco siempre */
+    background-color: var(--color-mapache-oscuro);
+    /* Negro en modo claro */
+    color: #ffffff !important;
+    /* Forzamos texto blanco siempre */
     padding: 15px 25px;
     border-radius: 50px;
     font-weight: bold;
@@ -460,9 +513,11 @@ section h2 {
 ========================================= */
 /* Usamos .dark-mode que viene desde el html */
 .dark-mode .btn-whatsapp {
-    background-color: var(--color-fondo-naranja) !important; /* Naranja en modo oscuro */
+    background-color: var(--color-fondo-naranja) !important;
+    /* Naranja en modo oscuro */
     color: #ffffff !important;
-    box-shadow: 0 4px 15px rgba(219, 98, 9, 0.4); /* Sombra naranja */
+    box-shadow: 0 4px 15px rgba(219, 98, 9, 0.4);
+    /* Sombra naranja */
 }
 
 .dark-mode .btn-whatsapp:hover {
@@ -474,7 +529,8 @@ section h2 {
    10. MODALES (GALERÍA Y PRECIOS)
 ========================================= */
 /* Base común para oscurecer el fondo */
-.modal, #modal-precios {
+.modal,
+#modal-precios {
     display: none;
     position: fixed;
     z-index: 2000;
@@ -482,15 +538,16 @@ section h2 {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* Caja del Modal de Precios (Consolidada y Limpia) */
 .modal-caja-blanca {
-    background-color: var(--color-fondo-claro); /* ¡MAGIA! Antes decía 'white' */
+    background-color: var(--color-fondo-claro);
     width: 90%;
     max-width: 800px;
     max-height: 80vh;
@@ -498,13 +555,27 @@ section h2 {
     border-radius: 20px;
     position: relative;
     overflow-y: auto;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
     animation: aparecer 0.3s ease-out;
 }
 
+.dark-mode .modal-caja-blanca {
+    background-color: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 @keyframes aparecer {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .modal-caja-blanca h2 {
@@ -515,7 +586,8 @@ section h2 {
 }
 
 /* Botones de cerrar (X) */
-.cerrar-modal, .cerrar-precios {
+.cerrar-modal,
+.cerrar-precios {
     position: absolute;
     top: 20px;
     right: 30px;
@@ -531,7 +603,8 @@ section h2 {
     position: absolute;
     top: 20px;
     right: 30px;
-    color: var(--color-texto-titulo); /* ¡MAGIA! Antes decía '#333' */
+    color: var(--color-texto-titulo);
+    /* ¡MAGIA! Antes decía '#333' */
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
@@ -539,7 +612,8 @@ section h2 {
     line-height: 1;
 }
 
-.cerrar-modal:hover, .cerrar-precios:hover {
+.cerrar-modal:hover,
+.cerrar-precios:hover {
     color: var(--color-acento);
 }
 
@@ -613,18 +687,18 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0; 
-    transition: opacity 1.5s ease-in-out; 
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
 }
 
 .carousel-slide.active {
-    opacity: 1; 
+    opacity: 1;
 }
 
 .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
 .slide-info {
@@ -632,7 +706,7 @@ footer {
     bottom: 100px;
     left: 50px;
     color: white;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 .slide-info h3 {
@@ -656,7 +730,7 @@ footer {
     border-radius: 50px;
     font-weight: bold;
     font-size: 1.2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -676,9 +750,11 @@ footer {
 
 #buscador-servicios {
     padding: 10px 20px;
-    border-radius: 50px; /* Redondo y moderno */
+    border-radius: 50px;
+    /* Redondo y moderno */
     border: 1px solid rgba(255, 255, 255, 0.4);
-    background-color: rgba(255, 255, 255, 0.15); /* Efecto cristal */
+    background-color: rgba(255, 255, 255, 0.15);
+    /* Efecto cristal */
     color: #ffffff;
     outline: none;
     font-family: var(--fuente-base);
@@ -695,8 +771,9 @@ footer {
 #buscador-servicios:focus {
     background-color: var(--color-fondo-claro);
     color: var(--color-texto-base);
-    width: 280px; /* Se alarga un poquito al escribir */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 280px;
+    /* Se alarga un poquito al escribir */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* El cuadro blanco que cae con los resultados */
@@ -705,15 +782,19 @@ footer {
     top: 110%;
     left: 0;
     width: 100%;
-    background-color: var(--color-fondo-claro);
+    background-color: rgba(248, 250, 252, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     list-style: none;
     padding: 5px 0;
     max-height: 250px;
     overflow-y: auto;
-    display: none; /* Oculto hasta que escriban */
+    display: none;
+    /* Oculto hasta que escriban */
     z-index: 2000;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .dropdown-resultados li {
@@ -721,12 +802,12 @@ footer {
     color: var(--color-texto-base);
     cursor: pointer;
     font-size: 0.9rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     transition: background-color 0.2s ease;
 }
 
 .dropdown-resultados li:hover {
-    background-color: rgba(246, 114, 17, 0.1);
+    background-color: rgba(249, 115, 22, 0.1);
     color: var(--color-acento);
 }
 
@@ -736,6 +817,7 @@ footer {
     color: #999;
     font-style: italic;
 }
+
 .dropdown-resultados li.no-resultado:hover {
     background-color: transparent;
     color: #999;
@@ -743,11 +825,13 @@ footer {
 
 /* 🌙 ADAPTACIÓN AL MODO OSCURO */
 body.dark-mode .dropdown-resultados {
-    background-color: #27272a;
+    background-color: rgba(30, 41, 59, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 body.dark-mode .dropdown-resultados li {
     color: var(--color-texto-base);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* 📱 ADAPTACIÓN A MÓVILES */
@@ -757,9 +841,11 @@ body.dark-mode .dropdown-resultados li {
         width: 100%;
         margin-top: 10px;
     }
+
     #buscador-servicios {
         width: 100%;
     }
+
     #buscador-servicios:focus {
         width: 100%;
     }
@@ -769,39 +855,64 @@ body.dark-mode .dropdown-resultados li {
    13. DISEÑO RESPONSIVO (SIEMPRE AL FINAL)
 ========================================= */
 @media screen and (max-width: 768px) {
-    
+
     /* Ajuste para que las tarjetas de servicios ocupen toda la pantalla en celular */
     .grid-galeria .categoria-card {
-        flex: 0 0 100%; 
+        flex: 0 0 100%;
     }
 
-    header { padding: 10px 15px; }
-    nav { flex-direction: column; gap: 15px; }
-    .logo-header img { height: 50px; }
-    
+    header {
+        padding: 10px 15px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .logo-header img {
+        height: 50px;
+    }
+
     nav ul {
         width: 100%;
         justify-content: center;
         gap: 15px;
         flex-wrap: wrap;
     }
-    
-    nav a { font-size: 0.85rem; }
-    main { margin-top: 140px; }
-    
-    #inicio h1 { font-size: 2.2rem; }
-    #inicio p { font-size: 1.2rem; }
-    section { padding: 60px 20px; }
-    
-    .paquete { width: 100%; padding: 40px 20px; }
-    
+
+    nav a {
+        font-size: 0.85rem;
+    }
+
+    main {
+        margin-top: 140px;
+    }
+
+    #inicio h1 {
+        font-size: 2.2rem;
+    }
+
+    #inicio p {
+        font-size: 1.2rem;
+    }
+
+    section {
+        padding: 60px 20px;
+    }
+
+    .paquete {
+        width: 100%;
+        padding: 40px 20px;
+    }
+
     .btn-whatsapp {
         bottom: 15px;
         right: 15px;
         padding: 10px 20px;
         font-size: 0.85rem;
     }
-    
+
     .footer-contenido {
         flex-direction: column;
         text-align: center;
@@ -819,9 +930,11 @@ body.dark-mode .dropdown-resultados li {
         bottom: 40px;
         left: 20px;
     }
+
     .slide-info h3 {
         font-size: 1.8rem;
     }
+
     .btn-principal {
         padding: 15px 30px;
         font-size: 1rem;
@@ -830,10 +943,16 @@ body.dark-mode .dropdown-resultados li {
 
     /* En móviles, mostramos de 1 en 1 y metemos las flechas al canvas */
     .grid-galeria figure {
-        flex: 0 0 100%; 
+        flex: 0 0 100%;
     }
-    .prev-arrow { left: 10px; }
-    .next-arrow { right: 10px; }
+
+    .prev-arrow {
+        left: 10px;
+    }
+
+    .next-arrow {
+        right: 10px;
+    }
 }
 
 /* =========================================
@@ -849,15 +968,16 @@ body.dark-mode .dropdown-resultados li {
     width: 100%;
     height: 100%;
     /* Forzamos el naranja y evitamos que el móvil lo cambie */
-    background-color: #f67211 !important; 
-    color-scheme: light; /* Indica al navegador que ignore el dark mode aquí */
+    background-color: #f67211 !important;
+    color-scheme: light;
+    /* Indica al navegador que ignore el dark mode aquí */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 15000;
     overflow: hidden;
     transition: opacity 0.8s ease, visibility 0.8s ease;
-    will-change: opacity, visibility; 
+    will-change: opacity, visibility;
 }
 
 .splash-logo {
@@ -865,8 +985,8 @@ body.dark-mode .dropdown-resultados li {
     height: 90vh;
     object-fit: contain;
     z-index: 2;
-    will-change: transform, opacity; 
-    transform: translateZ(0); 
+    will-change: transform, opacity;
+    transform: translateZ(0);
     animation: zoomLogo 1.5s ease-out forwards;
 }
 
@@ -874,12 +994,12 @@ body.dark-mode .dropdown-resultados li {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 10vmax; 
+    width: 10vmax;
     height: 10vmax;
     /* Usamos el HEX directo para evitar errores de variables en móvil */
-    background-color: #f67211 !important; 
+    background-color: #f67211 !important;
     border-radius: 50%;
-    transform: translate3d(-50%, -50%, 0) scale(0); 
+    transform: translate3d(-50%, -50%, 0) scale(0);
     z-index: 1;
     pointer-events: none;
     will-change: transform;
@@ -900,27 +1020,48 @@ body.dark-mode .dropdown-resultados li {
    ANIMACIONES A 60 FPS
 ========================================= */
 @keyframes zoomLogo {
-    0% { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.splash-out {
+    animation: fadeOut 0.8s forwards ease-in-out;
 }
 
 .splash-out .paint-spill {
-    /* Usamos una curva bezier súper fluida que arranca rápido y frena suave */
-    animation: spillEffect 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+    display: none;
 }
 
 .splash-out .splash-logo {
-    animation: fadeOut 0.5s forwards;
-}
-
-@keyframes spillEffect {
-    0% { transform: translate3d(-50%, -50%, 0) scale(0); }
-    /* Escalamos masivamente la gota para que cubra las esquinas de la pantalla, sin recalcular bordes */
-    100% { transform: translate3d(-50%, -50%, 0) scale(30); } 
+    animation: scaleOut 0.8s forwards;
 }
 
 @keyframes fadeOut {
-    to { opacity: 0; transform: scale(1.1); }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes scaleOut {
+    to {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(1.1);
+    }
 }
 
 .splash-hidden {
